@@ -1,14 +1,23 @@
 <resources>
+
     <string name="app_name">BookLibrary</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_add_book">Add Book</string>
+    <string name="title_activity_admin_lent_books_tracking">Lent Books</string>
+    <string name="title_activity_books_catalog">Books Catalog</string>
+    <string name="title_activity_lending_history">Lending History</string>
+    <string name="title_activity_book_details">Book Details</string>
+
+
+    <string name="network_error">There is a problem with the connection</string>
+    <string name="server_error">An unknown error has occurred</string>
+
+    <!-- Login Activity -->
+    <string name="invalid_credentials">Username or password is incorrect</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
 
-    <string name="network_error">There is a problem with the connection</string>
-    <string name="server_error">An unknown error has occurred</string>
-
-    <string name="invalid_credentials">Username or password is incorrect</string>
 </resources>

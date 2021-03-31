@@ -11,10 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.RegistrationActivity"
-            android:label="@string/title_activity_login" />
-
         <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +18,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.AddBookActivity"
+            android:label="@string/title_activity_add_book" />
+
+        <activity
+            android:name=".ui.BooksCatalogActivity"
+            android:label="@string/title_activity_books_catalog" />
+
+        <activity
+            android:name=".ui.BookDetailsActivity"
+            android:label="@string/title_activity_book_details" />
+
+        <activity
+            android:name=".ui.LendingHistoryActivity"
+            android:label="@string/title_activity_lending_history" />
+
+        <activity
+            android:name=".ui.AdminLentBooksTrackingActivity"
+            android:label="@string/title_activity_admin_lent_books_tracking" />
     </application>
 
 </manifest>

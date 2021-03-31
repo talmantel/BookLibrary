@@ -22,20 +22,20 @@ import com.openu.sadna.booklibrary.util.InjectorUtils;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private LoginViewModel loginViewModel;
+    private LoginViewModel viewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginViewModel = ViewModelProviders.of(this, InjectorUtils.provideLoginViewModelFactory(getApplication())).get(LoginViewModel.class);
+        viewModel = ViewModelProviders.of(this, InjectorUtils.provideLoginViewModelFactory(getApplication())).get(LoginViewModel.class);
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
-        loginViewModel.getShowError().observe(this, new Observer<Event<Integer>>() {
+        viewModel.getShowError().observe(this, new Observer<Event<Integer>>() {
             @Override
             public void onChanged(@Nullable  Event<Integer> event) {
                 if (event != null && !event.hasBeenHandled())
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        loginViewModel.getCurrentUser().observe(this, new Observer<User>() {
+        viewModel.getCurrentUser().observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
                 if(user != null)
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
+                    viewModel.login(usernameEditText.getText().toString(),
                             passwordEditText.getText().toString());
                 }
                 return false;
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+                viewModel.login(usernameEditText.getText().toString(), passwordEditText.getText().toString());
             }
         });
     }
