@@ -1,49 +1,57 @@
 package com.openu.sadna.booklibrary.ui;
 
-import android.util.Patterns;
-
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
-import com.openu.sadna.booklibrary.common.Resource;
+import com.openu.sadna.booklibrary.R;
+import com.openu.sadna.booklibrary.common.Event;
+import com.openu.sadna.booklibrary.common.NetworkRequestEvent;
 import com.openu.sadna.booklibrary.data.Repository;
-import com.openu.sadna.booklibrary.data.model.User;
+import com.openu.sadna.booklibrary.network.pojo.User;
 
 
 public class LoginViewModel extends ViewModel {
 
-    private MutableLiveData<Resource<User>> loginResult = new MutableLiveData<>();
+    private LiveData<User> currentUser;
+    private MediatorLiveData<Event<Integer>> showError = new MediatorLiveData<>();
     private Repository repository;
 
-    LoginViewModel(Repository repository) {
+    public LoginViewModel(Repository repository) {
         this.repository = repository;
-    }
-
-    LiveData<Resource<User>> getLoginResult() {
-        return loginResult;
+        currentUser = repository.getCurrentUser();
     }
 
     public void login(String username, String password) {
-        //TODO can be launched in a separate asynchronous job
-        Resource<User> result = repository.login(username, password);
-        loginResult.setValue(result);
+        LiveData<NetworkRequestEvent> responseLiveData = repository.login(username, password);
+        showError.addSource(responseLiveData, new Observer<NetworkRequestEvent>() {
+            @Override
+            public void onChanged(NetworkRequestEvent networkRequestEvent) {
+                if(networkRequestEvent != null && !networkRequestEvent.hasBeenHandled()) {
+                    switch (networkRequestEvent.getContentIfNotHandled()){
+                        case SUCCESS:
+                            if(currentUser.getValue() == null)
+                                showError.setValue(new Event<>(R.string.invalid_credentials));
+                            break;
+                        case NETWORK_ERROR:
+                            showError.setValue(new Event<>(R.string.network_error));
+                            break;
+                        case SERVER_ERROR:
+                            showError.setValue(new Event<>(R.string.server_error));
+                            break;
+                    }
+                }
+            }
+        });
+
     }
 
-    //TODO A placeholder username validation check
-    private boolean isUserNameValid(String username) {
-        if (username == null) {
-            return false;
-        }
-        if (username.contains("@")) {
-            return Patterns.EMAIL_ADDRESS.matcher(username).matches();
-        } else {
-            return !username.trim().isEmpty();
-        }
+    public LiveData<User> getCurrentUser() {
+        return currentUser;
     }
 
-    //TODO A placeholder password validation check
-    private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
+    public LiveData<Event<Integer>> getShowError() {
+        return showError;
     }
 }

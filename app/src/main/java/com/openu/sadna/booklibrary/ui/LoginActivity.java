@@ -16,8 +16,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.openu.sadna.booklibrary.R;
-import com.openu.sadna.booklibrary.common.Resource;
-import com.openu.sadna.booklibrary.data.model.User;
+import com.openu.sadna.booklibrary.common.Event;
+import com.openu.sadna.booklibrary.network.pojo.User;
 import com.openu.sadna.booklibrary.util.InjectorUtils;
 
 public class LoginActivity extends AppCompatActivity {
@@ -28,24 +28,26 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginViewModel = ViewModelProviders.of(this, InjectorUtils.provideLoginViewModelFactory()).get(LoginViewModel.class);
+        loginViewModel = ViewModelProviders.of(this, InjectorUtils.provideLoginViewModelFactory(getApplication())).get(LoginViewModel.class);
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
-        loginViewModel.getLoginResult().observe(this, new Observer<Resource<User>>() {
+        loginViewModel.getShowError().observe(this, new Observer<Event<Integer>>() {
             @Override
-            public void onChanged(@Nullable  Resource<User> loginResult) {
-                if (loginResult == null)
-                    return;
-                loadingProgressBar.setVisibility(View.GONE);
+            public void onChanged(@Nullable  Event<Integer> event) {
+                if (event != null && !event.hasBeenHandled())
+                    Toast.makeText(LoginActivity.this, getString(event.getContentIfNotHandled()), Toast.LENGTH_SHORT).show();
+            }
+        });
 
-                if (!loginResult.isSuccessful())
-                    showLoginFailed();
-                else if (loginResult.getData() != null)
-                    onLogin(loginResult.getData());
+        loginViewModel.getCurrentUser().observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if(user != null)
+                    onLogin(user);
             }
         });
 
@@ -66,8 +68,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                loginViewModel.login(usernameEditText.getText().toString(), passwordEditText.getText().toString());
             }
         });
     }
@@ -76,9 +77,5 @@ public class LoginActivity extends AppCompatActivity {
         String welcome = getString(R.string.welcome) + user.getFirstName() + " " + user.getLastName() ;
         Toast.makeText(this, welcome, Toast.LENGTH_LONG).show();
         //TODO go to catalog activity
-    }
-
-    private void showLoginFailed() {
-        Toast.makeText(this, R.string.login_failed, Toast.LENGTH_SHORT).show();
     }
 }
