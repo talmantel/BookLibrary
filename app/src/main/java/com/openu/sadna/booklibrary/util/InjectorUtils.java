@@ -1,19 +1,20 @@
 package com.openu.sadna.booklibrary.util;
 
+import android.app.Application;
+
 import com.openu.sadna.booklibrary.data.Repository;
-import com.openu.sadna.booklibrary.data.dao.BooksDao;
-import com.openu.sadna.booklibrary.data.dao.UsersDao;
+import com.openu.sadna.booklibrary.data.SharedPrefs;
+import com.openu.sadna.booklibrary.network.RestClient;
 import com.openu.sadna.booklibrary.ui.LoginViewModelFactory;
 
 public class InjectorUtils {
 
-    private static Repository getRepository()  {
-        //TODO return Repository.getInstance(FirestoreDatabase.getInstance().profilesDao());
-        return Repository.getInstance(new BooksDao(), new UsersDao());
+    private static Repository getRepository(Application application)  {
+        return Repository.getInstance(RestClient.getInstance().getApiService(), SharedPrefs.getInstance(application));
     }
 
-    public static LoginViewModelFactory provideLoginViewModelFactory() {
-        Repository repo = getRepository();
+    public static LoginViewModelFactory provideLoginViewModelFactory(Application application) {
+        Repository repo = getRepository(application);
         return new LoginViewModelFactory(repo);
     }
 

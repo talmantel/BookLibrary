@@ -4,24 +4,27 @@ package com.openu.sadna.booklibrary.common;
 public class Resource<T> {
 
     private T data;
-    private Exception error;
-    private boolean isSuccessful;
+    private Throwable error;
 
-    public Resource(T data, Exception error, boolean isSuccessful) {
+    public Resource(T data) {
         this.data = data;
+        this.error = null;
+    }
+
+    public Resource(Throwable error) {
+        this.data = null;
         this.error = error;
-        this.isSuccessful = isSuccessful;
     }
 
     public T getData(){
        return data;
     }
 
-    public Exception getError(){
+    public Throwable getError(){
         return error;
     }
 
     public boolean isSuccessful() {
-        return isSuccessful;
+        return error != null;
     }
 }

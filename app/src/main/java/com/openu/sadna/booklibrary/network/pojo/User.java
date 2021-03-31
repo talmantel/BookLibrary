@@ -1,9 +1,20 @@
-package com.openu.sadna.booklibrary.data.model;
+package com.openu.sadna.booklibrary.network.pojo;
+
+import com.google.gson.annotations.SerializedName;
 
 public class User {
 
-    private String firstName, lastName, token;
-    private boolean isAdmin;
+    @SerializedName("name")
+    private String firstName;
+
+    @SerializedName("website")
+    private String lastName;
+
+    @SerializedName("username")
+    private String token;
+
+    @SerializedName("isAdmin")
+    private Boolean isAdmin;
 
     public User(String firstName, String lastName, String token, boolean isAdmin) {
         this.firstName = firstName;
@@ -24,7 +35,7 @@ public class User {
         return token;
     }
 
-    public boolean isAdmin() {
+    public Boolean isAdmin() {
         return isAdmin;
     }
 }
