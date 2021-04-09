@@ -23,30 +23,6 @@ public class BooksCatalogViewModel extends ViewModel {
         currentUser = repository.getCurrentUser();
     }
 
-    public void login(String username, String password) {
-        LiveData<NetworkRequestEvent> responseLiveData = repository.login(username, password);
-        showError.addSource(responseLiveData, new Observer<NetworkRequestEvent>() {
-            @Override
-            public void onChanged(NetworkRequestEvent networkRequestEvent) {
-                if(networkRequestEvent != null && !networkRequestEvent.hasBeenHandled()) {
-                    switch (networkRequestEvent.getContentIfNotHandled()){
-                        case SUCCESS:
-                            if(currentUser.getValue() == null)
-                                showError.setValue(new Event<>(R.string.invalid_credentials));
-                            break;
-                        case NETWORK_ERROR:
-                            showError.setValue(new Event<>(R.string.network_error));
-                            break;
-                        case SERVER_ERROR:
-                            showError.setValue(new Event<>(R.string.server_error));
-                            break;
-                    }
-                }
-            }
-        });
-
-    }
-
     public LiveData<User> getCurrentUser() {
         return currentUser;
     }

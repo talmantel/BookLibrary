@@ -20,6 +20,11 @@ public class Repository {
     private SharedPrefs sharedPrefs;
 
 
+    public interface RequestCallback<T>{
+        void onNetworkResponse(NetworkRequestEvent event, T data);
+    }
+
+
     private Repository(APIInterface apiService, SharedPrefs sharedPrefs){
         this.apiService = apiService;
         this.sharedPrefs = sharedPrefs;
@@ -33,8 +38,7 @@ public class Repository {
         return instance;
     }
 
-    public LiveData<NetworkRequestEvent> login(String username, String password) {
-        final MutableLiveData<NetworkRequestEvent> result = new MutableLiveData<>();
+    public void login(String username, String password, final RequestCallback<Void> callback) {
         Call<User> loginCall = apiService.login(username, password);
         loginCall.enqueue(new Callback<User>() {
               @Override
@@ -48,19 +52,19 @@ public class Repository {
                       else
                           currentUser.setValue(null);
 
-                      result.setValue(NetworkRequestEvent.success());
+                      if(callback != null)
+                          callback.onNetworkResponse(NetworkRequestEvent.SUCCESS, null);
                   }
-                  else
-                      result.setValue(NetworkRequestEvent.serverError());
+                  else if(callback != null)
+                      callback.onNetworkResponse(NetworkRequestEvent.SERVER_ERROR, null);
               }
 
               @Override
               public void onFailure(Call<User> call, Throwable t) {
-                  result.setValue(NetworkRequestEvent.networkError());
+                  if(callback != null)
+                      callback.onNetworkResponse(NetworkRequestEvent.NETWORK_ERROR, null);
               }
           });
-
-        return result;
     }
 
     public LiveData<User> getCurrentUser(){
@@ -71,4 +75,11 @@ public class Repository {
         sharedPrefs.clearUser();
         currentUser.setValue(null);
     }
+
+
+    public void addBook(String bookName, String authorName, String authorFamily, String description, String category, final RequestCallback<Void> callback){
+        //TODO
+    }
+
+
 }

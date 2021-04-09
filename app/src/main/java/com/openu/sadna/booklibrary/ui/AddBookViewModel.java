@@ -15,7 +15,6 @@ import com.openu.sadna.booklibrary.network.pojo.User;
 public class AddBookViewModel extends ViewModel {
 
     private LiveData<User> currentUser;
-    private MediatorLiveData<Event<Integer>> showError = new MediatorLiveData<>();
     private Repository repository;
 
     public AddBookViewModel(Repository repository) {
@@ -23,35 +22,17 @@ public class AddBookViewModel extends ViewModel {
         currentUser = repository.getCurrentUser();
     }
 
-    public void login(String username, String password) {
-        LiveData<NetworkRequestEvent> responseLiveData = repository.login(username, password);
-        showError.addSource(responseLiveData, new Observer<NetworkRequestEvent>() {
+
+    public void addBook(String bookName, String authorName, String authorFamily, String description, String category){
+        repository.addBook(bookName, authorName, authorFamily, description, category, new Repository.RequestCallback<Void>() {
             @Override
-            public void onChanged(NetworkRequestEvent networkRequestEvent) {
-                if(networkRequestEvent != null && !networkRequestEvent.hasBeenHandled()) {
-                    switch (networkRequestEvent.getContentIfNotHandled()){
-                        case SUCCESS:
-                            if(currentUser.getValue() == null)
-                                showError.setValue(new Event<>(R.string.invalid_credentials));
-                            break;
-                        case NETWORK_ERROR:
-                            showError.setValue(new Event<>(R.string.network_error));
-                            break;
-                        case SERVER_ERROR:
-                            showError.setValue(new Event<>(R.string.server_error));
-                            break;
-                    }
-                }
+            public void onNetworkResponse(NetworkRequestEvent event, Void data) {
+                //TODO
             }
         });
-
     }
 
     public LiveData<User> getCurrentUser() {
         return currentUser;
-    }
-
-    public LiveData<Event<Integer>> getShowError() {
-        return showError;
     }
 }
