@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.LoginActivity">
+        <activity android:name=".ui.loginActivity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,23 +20,23 @@
         </activity>
 
         <activity
-            android:name=".ui.AddBookActivity"
+            android:name=".ui.addBookActivity.AddBookActivity"
             android:label="@string/title_activity_add_book" />
 
         <activity
-            android:name=".ui.BooksCatalogActivity"
+            android:name=".ui.booksCatalogActivity.BooksCatalogActivity"
             android:label="@string/title_activity_books_catalog" />
 
         <activity
-            android:name=".ui.BookDetailsActivity"
+            android:name=".ui.bookDetailsActivity.BookDetailsActivity"
             android:label="@string/title_activity_book_details" />
 
         <activity
-            android:name=".ui.LendingHistoryActivity"
+            android:name=".ui.lendingHistoryActivity.LendingHistoryActivity"
             android:label="@string/title_activity_lending_history" />
 
         <activity
-            android:name=".ui.AdminLentBooksTrackingActivity"
+            android:name=".ui.adminLentBooksTrackingActivity.AdminLentBooksTrackingActivity"
             android:label="@string/title_activity_admin_lent_books_tracking" />
     </application>
 

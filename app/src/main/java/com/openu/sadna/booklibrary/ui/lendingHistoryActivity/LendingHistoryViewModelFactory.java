@@ -1,16 +1,16 @@
-package com.openu.sadna.booklibrary.ui;
+package com.openu.sadna.booklibrary.ui.lendingHistoryActivity;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.annotation.NonNull;
 
 import com.openu.sadna.booklibrary.data.Repository;
 
-public class LoginViewModelFactory implements ViewModelProvider.Factory {
+public class LendingHistoryViewModelFactory implements ViewModelProvider.Factory {
 
     private Repository repo;
 
-    public LoginViewModelFactory(Repository repo){
+    public LendingHistoryViewModelFactory(Repository repo){
         this.repo = repo;
     }
 
@@ -18,8 +18,8 @@ public class LoginViewModelFactory implements ViewModelProvider.Factory {
     @Override
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(LoginViewModel.class)) {
-            return (T) new LoginViewModel(repo);
+        if (modelClass.isAssignableFrom(LendingHistoryViewModel.class)) {
+            return (T) new LendingHistoryViewModel(repo);
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

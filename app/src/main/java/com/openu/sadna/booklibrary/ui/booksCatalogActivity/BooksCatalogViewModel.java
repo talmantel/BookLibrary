@@ -1,4 +1,4 @@
-package com.openu.sadna.booklibrary.ui;
+package com.openu.sadna.booklibrary.ui.booksCatalogActivity;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
@@ -12,17 +12,16 @@ import com.openu.sadna.booklibrary.data.Repository;
 import com.openu.sadna.booklibrary.network.pojo.User;
 
 
-public class LendingHistoryViewModel extends ViewModel {
+public class BooksCatalogViewModel extends ViewModel {
 
     private LiveData<User> currentUser;
     private MediatorLiveData<Event<Integer>> showError = new MediatorLiveData<>();
     private Repository repository;
 
-    public LendingHistoryViewModel(Repository repository) {
+    public BooksCatalogViewModel(Repository repository) {
         this.repository = repository;
         currentUser = repository.getCurrentUser();
     }
-
 
     public LiveData<User> getCurrentUser() {
         return currentUser;

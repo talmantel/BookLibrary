@@ -7,4 +7,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="editTextStyle" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:paddingTop">@dimen/spacing_inside_small</item>
+        <item name="android:paddingBottom">@dimen/spacing_inside_small</item>
+        <item name="android:paddingStart">@dimen/spacing_inside_small</item>
+        <item name="android:paddingEnd">@dimen/spacing_inside_small</item>
+    </style>
+
+    <style name="actionButtonStyle" parent="@style/Widget.AppCompat.Button">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:paddingTop">@dimen/spacing_inside_small</item>
+        <item name="android:paddingBottom">@dimen/spacing_inside_small</item>
+        <item name="android:paddingStart">@dimen/spacing_inside_small</item>
+        <item name="android:paddingEnd">@dimen/spacing_inside_small</item>
+    </style>
+
 </resources>

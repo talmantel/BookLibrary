@@ -1,4 +1,4 @@
-package com.openu.sadna.booklibrary.ui;
+package com.openu.sadna.booklibrary.ui.adminLentBooksTrackingActivity;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
@@ -12,13 +12,13 @@ import com.openu.sadna.booklibrary.data.Repository;
 import com.openu.sadna.booklibrary.network.pojo.User;
 
 
-public class BooksCatalogViewModel extends ViewModel {
+public class AdminLentBooksTrackingViewModel extends ViewModel {
 
     private LiveData<User> currentUser;
     private MediatorLiveData<Event<Integer>> showError = new MediatorLiveData<>();
     private Repository repository;
 
-    public BooksCatalogViewModel(Repository repository) {
+    public AdminLentBooksTrackingViewModel(Repository repository) {
         this.repository = repository;
         currentUser = repository.getCurrentUser();
     }

@@ -8,16 +8,23 @@
     <string name="title_activity_lending_history">Lending History</string>
     <string name="title_activity_book_details">Book Details</string>
 
+    <!-- Menu options -->
+    <string name="menu_book_catalog">Book Catalog</string>
+    <string name="menu_lending_history">Lending History</string>
+    <string name="menu_add_book">Add Book</string>
+    <string name="menu_lending_tracking">Lending Tracker</string>
+    <string name="menu_logout">Logout</string>
 
     <string name="network_error">There is a problem with the connection</string>
     <string name="server_error">An unknown error has occurred</string>
 
     <!-- Login Activity -->
+    <string name="tab_login">Sign In</string>
+    <string name="tab_register">Register</string>
+    <string name="welcome_message">Welcome %1$s %2$s!</string>
     <string name="invalid_credentials">Username or password is incorrect</string>
-    <string name="prompt_email">Email</string>
+    <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_register">Register</string>
 </resources>

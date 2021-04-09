@@ -2,15 +2,16 @@ package com.openu.sadna.booklibrary.util;
 
 import android.app.Application;
 
+import com.openu.sadna.booklibrary.common.OptionsMenuHandler;
 import com.openu.sadna.booklibrary.data.Repository;
 import com.openu.sadna.booklibrary.data.SharedPrefs;
 import com.openu.sadna.booklibrary.network.RestClient;
-import com.openu.sadna.booklibrary.ui.AddBookViewModelFactory;
-import com.openu.sadna.booklibrary.ui.AdminLentBooksTrackingViewModelFactory;
-import com.openu.sadna.booklibrary.ui.BookDetailsViewModelFactory;
-import com.openu.sadna.booklibrary.ui.BooksCatalogViewModelFactory;
-import com.openu.sadna.booklibrary.ui.LendingHistoryViewModelFactory;
-import com.openu.sadna.booklibrary.ui.LoginViewModelFactory;
+import com.openu.sadna.booklibrary.ui.addBookActivity.AddBookViewModelFactory;
+import com.openu.sadna.booklibrary.ui.adminLentBooksTrackingActivity.AdminLentBooksTrackingViewModelFactory;
+import com.openu.sadna.booklibrary.ui.bookDetailsActivity.BookDetailsViewModelFactory;
+import com.openu.sadna.booklibrary.ui.booksCatalogActivity.BooksCatalogViewModelFactory;
+import com.openu.sadna.booklibrary.ui.lendingHistoryActivity.LendingHistoryViewModelFactory;
+import com.openu.sadna.booklibrary.ui.loginActivity.LoginViewModelFactory;
 
 public class InjectorUtils {
 
@@ -46,6 +47,11 @@ public class InjectorUtils {
     public static AddBookViewModelFactory provideAddBookViewModelFactory(Application application) {
         Repository repo = getRepository(application);
         return new AddBookViewModelFactory(repo);
+    }
+
+    public static OptionsMenuHandler provideOptionsMenuHandler(Application application) {
+        Repository repo = getRepository(application);
+        return OptionsMenuHandler.getInstance(repo);
     }
 
 }

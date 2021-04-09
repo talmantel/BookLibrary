@@ -1,4 +1,4 @@
-package com.openu.sadna.booklibrary.ui;
+package com.openu.sadna.booklibrary.ui.adminLentBooksTrackingActivity;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.openu.sadna.booklibrary.data.Repository;
 
-public class BooksCatalogViewModelFactory implements ViewModelProvider.Factory {
+public class AdminLentBooksTrackingViewModelFactory implements ViewModelProvider.Factory {
 
     private Repository repo;
 
-    public BooksCatalogViewModelFactory(Repository repo){
+    public AdminLentBooksTrackingViewModelFactory(Repository repo){
         this.repo = repo;
     }
 
@@ -18,8 +18,8 @@ public class BooksCatalogViewModelFactory implements ViewModelProvider.Factory {
     @Override
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(BooksCatalogViewModel.class)) {
-            return (T) new BooksCatalogViewModel(repo);
+        if (modelClass.isAssignableFrom(AdminLentBooksTrackingViewModel.class)) {
+            return (T) new AdminLentBooksTrackingViewModel(repo);
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }
