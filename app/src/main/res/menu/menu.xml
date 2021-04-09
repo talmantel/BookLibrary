@@ -26,7 +26,7 @@
         android:id="@+id/menu_lending_tracking"
         app:showAsAction="never|withText"
         android:visible="false"
-        android:title="@string/menu_book_catalog"/>
+        android:title="@string/menu_lending_tracking"/>
 
     <item
         android:id="@+id/menu_logout"

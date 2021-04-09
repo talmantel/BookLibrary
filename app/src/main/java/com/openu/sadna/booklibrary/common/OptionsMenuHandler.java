@@ -9,6 +9,8 @@ import android.view.MenuItem;
 
 import com.openu.sadna.booklibrary.R;
 import com.openu.sadna.booklibrary.data.Repository;
+import com.openu.sadna.booklibrary.network.pojo.User;
+import com.openu.sadna.booklibrary.ui.addBookActivity.AddBookActivity;
 import com.openu.sadna.booklibrary.ui.addBookActivity.AddBookViewModel;
 import com.openu.sadna.booklibrary.ui.adminLentBooksTrackingActivity.AdminLentBooksTrackingActivity;
 import com.openu.sadna.booklibrary.ui.booksCatalogActivity.BooksCatalogActivity;
@@ -33,6 +35,11 @@ public class OptionsMenuHandler {
 
     public boolean onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         menuInflater.inflate(R.menu.menu, menu);
+        User user = repository.getCurrentUser().getValue();
+        if(user != null && user.isAdmin()) {
+            menu.findItem(R.id.menu_add_book).setVisible(true);
+            menu.findItem(R.id.menu_lending_tracking).setVisible(true);
+        }
         return true;
     }
 
@@ -40,7 +47,7 @@ public class OptionsMenuHandler {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.menu_add_book:
-                intent = new Intent(context, AddBookViewModel.class);
+                intent = new Intent(context, AddBookActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 context.startActivity(intent);
                 return true;

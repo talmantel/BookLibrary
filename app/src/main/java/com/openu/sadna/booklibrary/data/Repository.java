@@ -24,12 +24,10 @@ public class Repository {
         void onNetworkResponse(NetworkRequestEvent event, T data);
     }
 
-
     private Repository(APIInterface apiService, SharedPrefs sharedPrefs){
         this.apiService = apiService;
         this.sharedPrefs = sharedPrefs;
-        currentUser = new MutableLiveData<>();
-        currentUser.setValue(this.sharedPrefs.getUser());
+        currentUser = new MutableLiveData<>(this.sharedPrefs.getUser());
     }
 
     public synchronized static Repository getInstance(APIInterface apiService, SharedPrefs sharedPrefs){

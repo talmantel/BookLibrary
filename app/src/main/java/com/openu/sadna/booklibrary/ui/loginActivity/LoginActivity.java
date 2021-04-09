@@ -25,7 +25,7 @@ import com.openu.sadna.booklibrary.ui.BaseActivity;
 import com.openu.sadna.booklibrary.ui.booksCatalogActivity.BooksCatalogActivity;
 import com.openu.sadna.booklibrary.util.InjectorUtils;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel viewModel;
     private LoginPagerAdapter loginPagerAdapter;
@@ -35,7 +35,6 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         viewModel = new ViewModelProvider(this, InjectorUtils.provideLoginViewModelFactory(getApplication())).get(LoginViewModel.class);
-
 
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
