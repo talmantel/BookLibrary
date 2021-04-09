@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.loginActivity.LoginActivity">
+        <activity android:name=".ui.loginActivity.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,22 +22,27 @@
 
         <activity
             android:name=".ui.addBookActivity.AddBookActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_add_book" />
 
         <activity
             android:name=".ui.booksCatalogActivity.BooksCatalogActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_books_catalog" />
 
         <activity
             android:name=".ui.bookDetailsActivity.BookDetailsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_book_details" />
 
         <activity
             android:name=".ui.lendingHistoryActivity.LendingHistoryActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_lending_history" />
 
         <activity
             android:name=".ui.adminLentBooksTrackingActivity.AdminLentBooksTrackingActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_admin_lent_books_tracking" />
     </application>
 
