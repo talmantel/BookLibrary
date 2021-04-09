@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -61,5 +60,11 @@ public class RegisterFragment extends Fragment {
                     viewModel.login(usernameEditText.getText().toString(), passwordEditText.getText().toString());
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        viewModel = null;
     }
 }
