@@ -2,16 +2,15 @@ package com.openu.sadna.booklibrary.ui.bookDetailsActivity;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.openu.sadna.booklibrary.R;
 import com.openu.sadna.booklibrary.ui.BaseActivity;
-import com.openu.sadna.booklibrary.ui.adminLentBooksTrackingActivity.AdminLentBooksTrackingViewModel;
 import com.openu.sadna.booklibrary.util.InjectorUtils;
 
 public class BookDetailsActivity  extends BaseActivity {
+
+    public static final String BOOK_ID_EXTRA = "book_id";
 
     private BookDetailsViewModel viewModel;
 

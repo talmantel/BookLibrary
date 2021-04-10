@@ -35,4 +35,11 @@
     <string name="username_illegal_error">Username must be at least 6 characters!</string>
     <string name="password_illegal_error">Password must be at least 6 characters!</string>
     <string name="passwords_dont_match_error">Password and repeat password do not match!</string>
+
+    <!-- Book Catalog Activity -->
+    <string name="prompt_text_search">Enter text to search</string>
+    <string name="action_search">Search</string>
+    <string name="no_matching_books_found_message">No matching books found!</string>
+    <string name="all_categories_spinner_item">All Categories</string>
+    <string name="book_author_text">%1$s %2$s</string>
 </resources>

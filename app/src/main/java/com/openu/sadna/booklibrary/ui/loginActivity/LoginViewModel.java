@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 public class LoginViewModel extends ViewModel {
 
     private LiveData<User> currentUser;
-    private MutableLiveData<Boolean> showProgressBar;
+    private MutableLiveData<Boolean> isLoading;
     private MediatorLiveData<Event<Integer>> showError;
     private Repository repository;
 
@@ -26,11 +26,11 @@ public class LoginViewModel extends ViewModel {
         this.repository = repository;
         currentUser = repository.getCurrentUser();
         showError = new MediatorLiveData<>();
-        showProgressBar = new MutableLiveData<>();
+        isLoading = new MutableLiveData<>();
     }
 
     public void login(@NotNull String username, @NotNull String password) {
-        showProgressBar.setValue(true);
+        isLoading.setValue(true);
         repository.login(username, password, new RequestCallback<Void>() {
             @Override
             public void onNetworkResponse(@NotNull NetworkRequestEvent event, Void data) {
@@ -46,7 +46,7 @@ public class LoginViewModel extends ViewModel {
                         showError.setValue(new Event<>(R.string.server_error));
                         break;
                 }
-                showProgressBar.setValue(false);
+                isLoading.setValue(false);
             }
         });
     }
@@ -56,7 +56,7 @@ public class LoginViewModel extends ViewModel {
         if(credentialsError != null)
             showError.setValue(new Event<>(credentialsError));
         else {
-            showProgressBar.setValue(true);
+            isLoading.setValue(true);
             repository.register(username, password, fname, lname, new RequestCallback<Void>() {
                 @Override
                 public void onNetworkResponse(@NotNull NetworkRequestEvent event, Void data) {
@@ -72,7 +72,7 @@ public class LoginViewModel extends ViewModel {
                             showError.setValue(new Event<>(R.string.server_error));
                             break;
                     }
-                    showProgressBar.setValue(false);
+                    isLoading.setValue(false);
                 }
             });
         }
@@ -100,7 +100,7 @@ public class LoginViewModel extends ViewModel {
         return showError;
     }
 
-    public LiveData<Boolean> getShowProgressBar() {
-        return showProgressBar;
+    public LiveData<Boolean> getIsLoading() {
+        return isLoading;
     }
 }

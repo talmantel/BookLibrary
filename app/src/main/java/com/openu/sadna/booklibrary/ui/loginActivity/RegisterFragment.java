@@ -50,7 +50,7 @@ public class RegisterFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE)
-                    if(viewModel != null)
+                    if(viewModel != null && viewModel.getIsLoading().getValue() != null && !viewModel.getIsLoading().getValue())
                         viewModel.register(usernameEditText.getText().toString(),
                                 passwordEditText.getText().toString(),
                                 repeatPasswordEditText.getText().toString(),
@@ -63,7 +63,7 @@ public class RegisterFragment extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(viewModel != null) {
+                if(viewModel != null&& viewModel.getIsLoading().getValue() != null && !viewModel.getIsLoading().getValue()) {
                     viewModel.register(usernameEditText.getText().toString(),
                             passwordEditText.getText().toString(),
                             repeatPasswordEditText.getText().toString(),

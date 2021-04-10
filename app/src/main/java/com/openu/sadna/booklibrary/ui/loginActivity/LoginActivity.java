@@ -3,6 +3,7 @@ package com.openu.sadna.booklibrary.ui.loginActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -21,7 +22,6 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.openu.sadna.booklibrary.R;
 import com.openu.sadna.booklibrary.common.Event;
 import com.openu.sadna.booklibrary.network.pojo.User;
-import com.openu.sadna.booklibrary.ui.BaseActivity;
 import com.openu.sadna.booklibrary.ui.booksCatalogActivity.BooksCatalogActivity;
 import com.openu.sadna.booklibrary.util.InjectorUtils;
 
@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable  Event<Integer> event) {
                 if (event != null && !event.hasBeenHandled())
-                    Toast.makeText(LoginActivity.this, getString(event.getContentIfNotHandled()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, event.getContentIfNotHandled(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -54,11 +54,19 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        viewModel.getShowProgressBar().observe(this, new Observer<Boolean>() {
+        viewModel.getIsLoading().observe(this, new Observer<Boolean>() {
             @Override
-            public void onChanged(Boolean showProgressBar) {
-                if(showProgressBar != null)
-                    loadingProgressBar.setVisibility(showProgressBar ? View.VISIBLE : View.GONE);
+            public void onChanged(Boolean isLoading) {
+                if(isLoading != null && isLoading){
+                    loadingProgressBar.setVisibility(View.VISIBLE);
+                    getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                }
+                else{
+                    loadingProgressBar.setVisibility(View.GONE);
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                }
+
             }
         });
 
