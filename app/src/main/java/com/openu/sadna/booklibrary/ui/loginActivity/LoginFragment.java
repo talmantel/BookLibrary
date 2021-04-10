@@ -46,7 +46,7 @@ public class LoginFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE)
-                    if(viewModel != null && viewModel.getIsLoading().getValue() != null && !viewModel.getIsLoading().getValue())
+                    if(viewModel != null)
                         viewModel.login(usernameEditText.getText().toString(), passwordEditText.getText().toString());
                 return false;
             }
@@ -55,7 +55,7 @@ public class LoginFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(viewModel != null && viewModel.getIsLoading().getValue() != null && !viewModel.getIsLoading().getValue())
+                if(viewModel != null)
                     viewModel.login(usernameEditText.getText().toString(), passwordEditText.getText().toString());
             }
         });

@@ -82,8 +82,10 @@ public class LoginActivity extends AppCompatActivity {
                        switch (position){
                            case 0:
                                tab.setText(R.string.tab_login);
+                               break;
                            case 1:
                                tab.setText(R.string.tab_register);
+                               break;
                        }
                     }
                 }
