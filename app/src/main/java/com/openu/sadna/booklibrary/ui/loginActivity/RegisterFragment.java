@@ -39,25 +39,37 @@ public class RegisterFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        final EditText firstNameEditText = view.findViewById(R.id.fname);
+        final EditText lastNameEditText = view.findViewById(R.id.lname);
         final EditText usernameEditText = view.findViewById(R.id.username);
         final EditText passwordEditText = view.findViewById(R.id.password);
-        final Button loginButton = view.findViewById(R.id.login);
+        final EditText repeatPasswordEditText = view.findViewById(R.id.password_repeat);
+        final Button registerButton = view.findViewById(R.id.register);
 
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        repeatPasswordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE)
                     if(viewModel != null)
-                        viewModel.login(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+                        viewModel.register(usernameEditText.getText().toString(),
+                                passwordEditText.getText().toString(),
+                                repeatPasswordEditText.getText().toString(),
+                                firstNameEditText.getText().toString(),
+                                lastNameEditText.getText().toString());
                 return false;
             }
         });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(viewModel != null)
-                    viewModel.login(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+                if(viewModel != null) {
+                    viewModel.register(usernameEditText.getText().toString(),
+                            passwordEditText.getText().toString(),
+                            repeatPasswordEditText.getText().toString(),
+                            firstNameEditText.getText().toString(),
+                            lastNameEditText.getText().toString());
+                }
             }
         });
     }

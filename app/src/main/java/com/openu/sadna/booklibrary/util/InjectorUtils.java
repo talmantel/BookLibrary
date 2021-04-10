@@ -3,9 +3,9 @@ package com.openu.sadna.booklibrary.util;
 import android.app.Application;
 
 import com.openu.sadna.booklibrary.common.OptionsMenuHandler;
+import com.openu.sadna.booklibrary.data.MockRepository;
 import com.openu.sadna.booklibrary.data.Repository;
 import com.openu.sadna.booklibrary.data.SharedPrefs;
-import com.openu.sadna.booklibrary.network.RestClient;
 import com.openu.sadna.booklibrary.ui.addBookActivity.AddBookViewModelFactory;
 import com.openu.sadna.booklibrary.ui.adminLentBooksTrackingActivity.AdminLentBooksTrackingViewModelFactory;
 import com.openu.sadna.booklibrary.ui.bookDetailsActivity.BookDetailsViewModelFactory;
@@ -16,7 +16,8 @@ import com.openu.sadna.booklibrary.ui.loginActivity.LoginViewModelFactory;
 public class InjectorUtils {
 
     private static Repository getRepository(Application application)  {
-        return Repository.getInstance(RestClient.getInstance().getApiService(), SharedPrefs.getInstance(application));
+        //return Repository.getInstance(RestClient.getInstance().getApiService(), SharedPrefs.getInstance(application));
+        return MockRepository.getInstance(SharedPrefs.getInstance(application));
     }
 
     public static LoginViewModelFactory provideLoginViewModelFactory(Application application) {

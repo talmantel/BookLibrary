@@ -25,6 +25,14 @@
     <string name="invalid_credentials">Username or password is incorrect</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_password_repeat">Repeat Password</string>
+    <string name="prompt_first_name">First Name</string>
+    <string name="prompt_last_name">Last Name</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_register">Register</string>
+    <string name="first_name_empty_error">First name cannot be empty!</string>
+    <string name="last_name_empty_error">Last name cannot be empty!</string>
+    <string name="username_illegal_error">Username must be at least 6 characters!</string>
+    <string name="password_illegal_error">Password must be at least 6 characters!</string>
+    <string name="passwords_dont_match_error">Password and repeat password do not match!</string>
 </resources>
