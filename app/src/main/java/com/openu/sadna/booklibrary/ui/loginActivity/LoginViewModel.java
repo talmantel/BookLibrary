@@ -2,7 +2,6 @@ package com.openu.sadna.booklibrary.ui.loginActivity;
 
 import androidx.annotation.StringRes;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -19,13 +18,13 @@ public class LoginViewModel extends ViewModel {
 
     private LiveData<User> currentUser;
     private MutableLiveData<Boolean> isLoading;
-    private MediatorLiveData<Event<Integer>> showError;
+    private MutableLiveData<Event<Integer>> showError;
     private Repository repository;
 
     public LoginViewModel(Repository repository) {
         this.repository = repository;
         currentUser = repository.getCurrentUser();
-        showError = new MediatorLiveData<>();
+        showError = new MutableLiveData<>();
         isLoading = new MutableLiveData<>();
     }
 

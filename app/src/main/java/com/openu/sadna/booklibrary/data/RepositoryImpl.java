@@ -6,9 +6,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.openu.sadna.booklibrary.common.NetworkRequestEvent;
 import com.openu.sadna.booklibrary.common.RequestCallback;
 import com.openu.sadna.booklibrary.network.APIInterface;
-import com.openu.sadna.booklibrary.network.pojo.Books;
+import com.openu.sadna.booklibrary.network.pojo.Book;
 import com.openu.sadna.booklibrary.network.pojo.Categories;
+import com.openu.sadna.booklibrary.network.pojo.Review;
 import com.openu.sadna.booklibrary.network.pojo.User;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -87,7 +90,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void getBooks(String textQuery, String category, RequestCallback<Books> callback) {
+    public void getBooks(String textQuery, String category, RequestCallback<List<Book>> callback) {
 
     }
 
@@ -102,7 +105,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void getBookReviews(int bookID, RequestCallback<Void> callback) {
+    public void getBookReviews(int bookID, RequestCallback<List<Review>> callback) {
 
     }
 

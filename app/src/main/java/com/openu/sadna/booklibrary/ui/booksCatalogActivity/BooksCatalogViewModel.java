@@ -1,7 +1,6 @@
 package com.openu.sadna.booklibrary.ui.booksCatalogActivity;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,25 +9,27 @@ import com.openu.sadna.booklibrary.common.Event;
 import com.openu.sadna.booklibrary.common.NetworkRequestEvent;
 import com.openu.sadna.booklibrary.common.RequestCallback;
 import com.openu.sadna.booklibrary.data.Repository;
-import com.openu.sadna.booklibrary.network.pojo.Books;
+import com.openu.sadna.booklibrary.network.pojo.Book;
 import com.openu.sadna.booklibrary.network.pojo.Categories;
 import com.openu.sadna.booklibrary.network.pojo.User;
+
+import java.util.List;
 
 
 public class BooksCatalogViewModel extends ViewModel {
 
     private LiveData<User> currentUser;
-    private MediatorLiveData<Event<Integer>> showError;
+    private MutableLiveData<Event<Integer>> showError;
     private MutableLiveData<Boolean> isLoading;
     private Repository repository;
-    private MutableLiveData<Books> books;
+    private MutableLiveData<List<Book>> books;
     private MutableLiveData<Categories> categories;
     private int loadingCount;
 
     public BooksCatalogViewModel(Repository repository) {
         this.repository = repository;
         currentUser = repository.getCurrentUser();
-        showError = new MediatorLiveData<>();
+        showError = new MutableLiveData<>();
         isLoading = new MutableLiveData<>();
         books = new MutableLiveData<>();
         categories = new MutableLiveData<>();
@@ -59,9 +60,9 @@ public class BooksCatalogViewModel extends ViewModel {
 
     public void loadBooks(String textQuery, String category){
         addToLoad();
-        repository.getBooks(textQuery, category, new RequestCallback<Books>() {
+        repository.getBooks(textQuery, category, new RequestCallback<List<Book>>() {
             @Override
-            public void onNetworkResponse(NetworkRequestEvent event, Books data) {
+            public void onNetworkResponse(NetworkRequestEvent event, List<Book> data) {
                 switch (event) {
                     case SUCCESS:
                         books.setValue(data);
@@ -90,7 +91,7 @@ public class BooksCatalogViewModel extends ViewModel {
         return isLoading;
     }
 
-    public LiveData<Books> getBooks() {
+    public LiveData<List<Book>> getBooks() {
         return books;
     }
 

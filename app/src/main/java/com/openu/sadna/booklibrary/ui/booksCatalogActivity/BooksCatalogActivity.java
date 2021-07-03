@@ -18,13 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.openu.sadna.booklibrary.R;
 import com.openu.sadna.booklibrary.common.Event;
-import com.openu.sadna.booklibrary.network.pojo.Books;
+import com.openu.sadna.booklibrary.network.pojo.Book;
 import com.openu.sadna.booklibrary.network.pojo.Categories;
 import com.openu.sadna.booklibrary.ui.BaseActivity;
 import com.openu.sadna.booklibrary.ui.bookDetailsActivity.BookDetailsActivity;
 import com.openu.sadna.booklibrary.util.InjectorUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BooksCatalogActivity extends BaseActivity {
 
@@ -72,13 +73,13 @@ public class BooksCatalogActivity extends BaseActivity {
         booksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         booksRecyclerView.setAdapter(booksRecyclerViewAdapter);
 
-        viewModel.getBooks().observe(this, new Observer<Books>() {
+        viewModel.getBooks().observe(this, new Observer<List<Book>>() {
             @Override
-            public void onChanged(Books books) {
+            public void onChanged(List<Book> books) {
                 if(books != null) {
-                    booksRecyclerViewAdapter.setData(books.getBooks());
+                    booksRecyclerViewAdapter.setData(books);
                     booksRecyclerViewAdapter.notifyDataSetChanged();
-                    if (books.getBooks().size() == 0)
+                    if (books.size() == 0)
                         Toast.makeText(BooksCatalogActivity.this, R.string.no_matching_books_found_message, Toast.LENGTH_SHORT).show();
                 }
             }
