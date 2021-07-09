@@ -31,7 +31,6 @@ public class MockRepository implements Repository{
     private final List<Book> books;
     private final Hashtable<Integer, List<Review>> reviews;
 
-
     private MockRepository(SharedPrefs sharedPrefs){
         this.sharedPrefs = sharedPrefs;
         currentUser = new MutableLiveData<>(this.sharedPrefs.getUser());
@@ -264,6 +263,7 @@ public class MockRepository implements Repository{
 
     @Override
     public void getUserOrderHistory(final RequestCallback<Void> callback) {
+        //TODO implement
         if(callback != null) {
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {
@@ -277,6 +277,7 @@ public class MockRepository implements Repository{
 
     @Override
     public void getLentBooks(final RequestCallback<Void> callback) {
+        //TODO implement
         if(callback != null) {
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {

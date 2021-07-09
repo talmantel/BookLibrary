@@ -42,4 +42,18 @@
     <string name="no_matching_books_found_message">No matching books found!</string>
     <string name="all_categories_spinner_item">All Categories</string>
     <string name="book_author_text">%1$s %2$s</string>
+
+
+    <!-- Add Book Activity -->
+    <string name="prompt_book_name">Book Name</string>
+    <string name="prompt_author_first_name">Author First Name</string>
+    <string name="prompt_author_last_name">Author Last Name</string>
+    <string name="prompt_book_description">Book Description</string>
+    <string name="prompt_book_category">Category:</string>
+    <string name="action_add_book">Add Book</string>
+    <string name="book_name_empty_error">Book name cannot be empty!</string>
+    <string name="book_author_first_name_empty_error">Author first name cannot be empty!</string>
+    <string name="book_author_last_name_empty_error">Author last name cannot be empty!</string>
+    <string name="book_category_empty_error">Book category cannot be empty!</string>
+    <string name="book_added_message">Book added!</string>
 </resources>

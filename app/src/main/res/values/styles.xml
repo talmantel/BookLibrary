@@ -7,6 +7,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="promptTextViewStyle" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
     <style name="editTextStyle" parent="@style/Widget.AppCompat.EditText">
         <item name="android:textColor">@color/primaryText</item>
         <item name="android:background">@color/colorPrimary</item>

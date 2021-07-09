@@ -96,7 +96,7 @@ public class BooksCatalogActivity extends BaseActivity {
         ArrayList<String> categories = new ArrayList<>();
         categories.add(getString(R.string.all_categories_spinner_item));
 
-        final ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(BooksCatalogActivity.this, android.R.layout.simple_spinner_item, categories);
+        final ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(spinnerAdapter);
         categorySpinner.setSelection(0);
