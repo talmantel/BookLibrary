@@ -4,6 +4,8 @@
 
     <!-- Common -->
     <string name="date_time_format">dd/MM/yyyy HH:mm</string>
+    <string name="book_returned_message">Book returned!</string>
+    <string name="action_return_book">Return</string>
 
     <!-- Titles -->
     <string name="title_activity_login">@string/app_name</string>
@@ -70,6 +72,10 @@
     <!-- Lent Books Activity -->
     <string name="book_lent_to_text">Lent to: %1$s %2$s</string>
     <string name="book_lent_at_time_text">Lent at: %1$s</string>
-    <string name="action_return_book">Return</string>
     <string name="no_lent_books_found_message">The are no lent books!</string>
+
+    <!-- Book Details Activity -->
+    <string name="book_ordered_message">Book ordered!</string>
+    <string name="action_order_book">Order</string>
+
 </resources>

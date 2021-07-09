@@ -58,6 +58,14 @@ public class AdminLentBooksTrackingActivity extends BaseActivity {
             }
         });
 
+        viewModel.getEventsToHandle().observe(this, new Observer<Event<AdminLentBooksTrackingViewModel.Events>>() {
+            @Override
+            public void onChanged(@Nullable Event<AdminLentBooksTrackingViewModel.Events> event) {
+                if (event != null && !event.hasBeenHandled() && event.getContentIfNotHandled() == AdminLentBooksTrackingViewModel.Events.RETURN_BOOK_SUCCESS)
+                    Toast.makeText(AdminLentBooksTrackingActivity.this, R.string.book_returned_message, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         RecyclerView lentBooksRecyclerView = findViewById(R.id.lent_books_recycler_view);
         lentBooksRecyclerViewAdapter = new LentBooksRecyclerViewAdapter(this);
         lentBooksRecyclerViewAdapter.setClickListener(new LentBooksRecyclerViewAdapter.ItemClickListener() {

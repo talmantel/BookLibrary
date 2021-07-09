@@ -223,6 +223,24 @@ public class MockRepository implements Repository{
     }
 
     @Override
+    public void getBook(int bookID, final RequestCallback<Book> callback) {
+        for(final Book book : books){
+            if(book.getId() == bookID) {
+                if (callback != null) {
+                    final Handler handler = new Handler(Looper.getMainLooper());
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onNetworkResponse(NetworkRequestEvent.SUCCESS, book);
+                        }
+                    }, LOADING_DELAY);
+                }
+                break;
+            }
+        }
+    }
+
+    @Override
     public void orderBook(int bookID, final RequestCallback<Void> callback) {
         for(Book book : books){
             if(book.getId() == bookID){

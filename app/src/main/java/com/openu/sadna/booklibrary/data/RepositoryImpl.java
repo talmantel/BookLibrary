@@ -95,6 +95,11 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
+    public void getBook(int bookID, RequestCallback<Book> callback) {
+
+    }
+
+    @Override
     public void orderBook(int bookID, RequestCallback<Void> callback) {
 
     }

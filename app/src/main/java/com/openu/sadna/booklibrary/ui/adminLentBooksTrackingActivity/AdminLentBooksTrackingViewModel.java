@@ -102,4 +102,8 @@ public class AdminLentBooksTrackingViewModel extends ViewModel {
     public LiveData<List<Book>> getLentBooks() {
         return lentBooks;
     }
+
+    public LiveData<Event<Events>> getEventsToHandle() {
+        return handleEvent;
+    }
 }
