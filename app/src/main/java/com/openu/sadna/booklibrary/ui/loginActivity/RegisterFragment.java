@@ -1,5 +1,6 @@
 package com.openu.sadna.booklibrary.ui.loginActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -18,6 +19,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.openu.sadna.booklibrary.R;
 import com.openu.sadna.booklibrary.util.InjectorUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 public class RegisterFragment extends Fragment {
 
 
@@ -32,8 +35,8 @@ public class RegisterFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onAttach(@NonNull @NotNull Context context) {
+        super.onAttach(context);
         viewModel = new ViewModelProvider(requireActivity(), InjectorUtils.provideLoginViewModelFactory(requireActivity().getApplication())).get(LoginViewModel.class);
     }
 

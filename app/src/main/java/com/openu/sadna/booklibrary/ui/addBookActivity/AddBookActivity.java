@@ -60,13 +60,9 @@ public class AddBookActivity  extends BaseActivity {
         viewModel.getEventsToHandle().observe(this, new Observer<Event<AddBookViewModel.Events>>() {
             @Override
             public void onChanged(@Nullable Event<AddBookViewModel.Events> event) {
-                if (event != null && !event.hasBeenHandled()){
-                    switch (event.getContentIfNotHandled()){
-                        case ADD_BOOK_SUCCESS:
-                            Toast.makeText(AddBookActivity.this, R.string.book_added_message, Toast.LENGTH_SHORT).show();
-                            finish();
-                            break;
-                    }
+                if (event != null && !event.hasBeenHandled() && event.getContentIfNotHandled() == AddBookViewModel.Events.ADD_BOOK_SUCCESS){
+                    Toast.makeText(AddBookActivity.this, R.string.book_added_message, Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
         });

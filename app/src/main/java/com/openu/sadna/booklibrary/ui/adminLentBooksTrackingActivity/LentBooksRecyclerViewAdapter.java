@@ -68,7 +68,7 @@ public class LentBooksRecyclerViewAdapter extends RecyclerView.Adapter<LentBooks
             returnBookButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (mClickListener != null) mReturnBookClickListener.onItemClick(view, getAdapterPosition());
+                    if (mClickListener != null) mReturnBookClickListener.onItemClick(getAdapterPosition());
                 }
             });
             itemView.setOnClickListener(this);
@@ -76,7 +76,7 @@ public class LentBooksRecyclerViewAdapter extends RecyclerView.Adapter<LentBooks
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if (mClickListener != null) mClickListener.onItemClick(getAdapterPosition());
         }
     }
 
@@ -93,7 +93,7 @@ public class LentBooksRecyclerViewAdapter extends RecyclerView.Adapter<LentBooks
     }
 
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(int position);
     }
 
     public void setData(List<Book> mData) {

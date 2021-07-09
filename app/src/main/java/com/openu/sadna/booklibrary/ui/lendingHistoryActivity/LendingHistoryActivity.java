@@ -24,15 +24,13 @@ import java.util.List;
 
 public class LendingHistoryActivity  extends BaseActivity {
 
-    private LendingHistoryViewModel viewModel;
-    private RecyclerView lendingHistoryRecyclerView;
     private LendingHistoryRecyclerViewAdapter lendingHistoryRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lending_history);
-        viewModel = new ViewModelProvider(this, InjectorUtils.provideLendingHistoryViewModelFactory(getApplication())).get(LendingHistoryViewModel.class);
+        LendingHistoryViewModel viewModel = new ViewModelProvider(this, InjectorUtils.provideLendingHistoryViewModelFactory(getApplication())).get(LendingHistoryViewModel.class);
 
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
         viewModel.getIsLoading().observe(this, new Observer<Boolean>() {
@@ -59,11 +57,11 @@ public class LendingHistoryActivity  extends BaseActivity {
             }
         });
 
-        lendingHistoryRecyclerView = findViewById(R.id.lending_history_recycler_view);
+        RecyclerView lendingHistoryRecyclerView = findViewById(R.id.lending_history_recycler_view);
         lendingHistoryRecyclerViewAdapter = new LendingHistoryRecyclerViewAdapter(this);
         lendingHistoryRecyclerViewAdapter.setClickListener(new LendingHistoryRecyclerViewAdapter.ItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(int position) {
                 Intent intent = new Intent(LendingHistoryActivity.this, BookDetailsActivity.class);
                 intent.putExtra(BookDetailsActivity.BOOK_ID_EXTRA, lendingHistoryRecyclerViewAdapter.getItem(position).getId());
                 startActivity(intent);

@@ -8,14 +8,12 @@ import com.openu.sadna.booklibrary.common.Event;
 import com.openu.sadna.booklibrary.data.Repository;
 import com.openu.sadna.booklibrary.network.pojo.Book;
 import com.openu.sadna.booklibrary.network.pojo.Review;
-import com.openu.sadna.booklibrary.network.pojo.User;
 
 import java.util.List;
 
 
 public class BookDetailsViewModel extends ViewModel {
 
-    private final LiveData<User> currentUser;
     private final MutableLiveData<Event<Integer>> showError;
     private final Repository repository;
     private MutableLiveData<Boolean> isLoading;
@@ -25,12 +23,7 @@ public class BookDetailsViewModel extends ViewModel {
 
     public BookDetailsViewModel(Repository repository) {
         this.repository = repository;
-        currentUser = repository.getCurrentUser();
         showError = new MutableLiveData<>();
-    }
-
-    public LiveData<User> getCurrentUser() {
-        return currentUser;
     }
 
     public LiveData<Event<Integer>> getShowError() {

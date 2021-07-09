@@ -32,7 +32,6 @@ public class BooksCatalogActivity extends BaseActivity {
     private BooksCatalogViewModel viewModel;
     private EditText textQueryEditText;
     private Spinner categorySpinner;
-    private RecyclerView booksRecyclerView;
     private BooksRecyclerViewAdapter booksRecyclerViewAdapter;
 
     @Override
@@ -68,11 +67,11 @@ public class BooksCatalogActivity extends BaseActivity {
 
         textQueryEditText = findViewById(R.id.queryEditText);
         categorySpinner = findViewById(R.id.category_spinner);
-        booksRecyclerView = findViewById(R.id.books_recycler_view);
+        RecyclerView booksRecyclerView = findViewById(R.id.books_recycler_view);
         booksRecyclerViewAdapter = new BooksRecyclerViewAdapter(this);
         booksRecyclerViewAdapter.setClickListener(new BooksRecyclerViewAdapter.ItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(int position) {
                 Intent intent = new Intent(BooksCatalogActivity.this, BookDetailsActivity.class);
                 intent.putExtra(BookDetailsActivity.BOOK_ID_EXTRA, booksRecyclerViewAdapter.getItem(position).getId());
                 startActivity(intent);

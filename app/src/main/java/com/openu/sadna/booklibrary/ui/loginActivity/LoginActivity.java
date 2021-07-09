@@ -27,14 +27,11 @@ import com.openu.sadna.booklibrary.util.InjectorUtils;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private LoginViewModel viewModel;
-    private LoginPagerAdapter loginPagerAdapter;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        viewModel = new ViewModelProvider(this, InjectorUtils.provideLoginViewModelFactory(getApplication())).get(LoginViewModel.class);
+        LoginViewModel viewModel = new ViewModelProvider(this, InjectorUtils.provideLoginViewModelFactory(getApplication())).get(LoginViewModel.class);
 
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
@@ -71,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         ViewPager2 viewPager = findViewById(R.id.pager);
-        loginPagerAdapter = new LoginPagerAdapter(this);
+        LoginPagerAdapter loginPagerAdapter = new LoginPagerAdapter(this);
         viewPager.setAdapter(loginPagerAdapter);
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);

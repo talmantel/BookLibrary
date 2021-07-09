@@ -25,7 +25,6 @@ import java.util.List;
 public class AdminLentBooksTrackingActivity extends BaseActivity {
 
     private AdminLentBooksTrackingViewModel viewModel;
-    private RecyclerView lentBooksRecyclerView;
     private LentBooksRecyclerViewAdapter lentBooksRecyclerViewAdapter;
 
     @Override
@@ -59,11 +58,11 @@ public class AdminLentBooksTrackingActivity extends BaseActivity {
             }
         });
 
-        lentBooksRecyclerView = findViewById(R.id.lent_books_recycler_view);
+        RecyclerView lentBooksRecyclerView = findViewById(R.id.lent_books_recycler_view);
         lentBooksRecyclerViewAdapter = new LentBooksRecyclerViewAdapter(this);
         lentBooksRecyclerViewAdapter.setClickListener(new LentBooksRecyclerViewAdapter.ItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(int position) {
                 Intent intent = new Intent(AdminLentBooksTrackingActivity.this, BookDetailsActivity.class);
                 intent.putExtra(BookDetailsActivity.BOOK_ID_EXTRA, lentBooksRecyclerViewAdapter.getItem(position).getId());
                 startActivity(intent);
@@ -71,7 +70,7 @@ public class AdminLentBooksTrackingActivity extends BaseActivity {
         });
         lentBooksRecyclerViewAdapter.setReturnBookClickListener(new LentBooksRecyclerViewAdapter.ItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(int position) {
                 viewModel.returnBook(lentBooksRecyclerViewAdapter.getItem(position).getId());
             }
         });

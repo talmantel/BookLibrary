@@ -6,7 +6,7 @@
     <string name="date_time_format">dd/MM/yyyy HH:mm</string>
 
     <!-- Titles -->
-    <string name="title_activity_login">Login</string>
+    <string name="title_activity_login">@string/app_name</string>
     <string name="title_activity_add_book">Add Book</string>
     <string name="title_activity_admin_lent_books_tracking">Lent Books</string>
     <string name="title_activity_books_catalog">Books Catalog</string>

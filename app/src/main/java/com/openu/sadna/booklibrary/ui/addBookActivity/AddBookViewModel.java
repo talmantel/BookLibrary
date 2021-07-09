@@ -11,7 +11,6 @@ import com.openu.sadna.booklibrary.common.NetworkRequestEvent;
 import com.openu.sadna.booklibrary.common.RequestCallback;
 import com.openu.sadna.booklibrary.data.Repository;
 import com.openu.sadna.booklibrary.network.pojo.Categories;
-import com.openu.sadna.booklibrary.network.pojo.User;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -22,7 +21,6 @@ public class AddBookViewModel extends ViewModel {
         ADD_BOOK_SUCCESS
     }
 
-    private final LiveData<User> currentUser;
     private final MutableLiveData<Event<Integer>> showError;
     private final MutableLiveData<Event<Events>> handleEvent;
     private final MutableLiveData<Boolean> isLoading;
@@ -31,7 +29,6 @@ public class AddBookViewModel extends ViewModel {
 
     public AddBookViewModel(Repository repository) {
         this.repository = repository;
-        currentUser = repository.getCurrentUser();
         showError = new MutableLiveData<>();
         handleEvent = new MutableLiveData<>();
         isLoading = new MutableLiveData<>();
@@ -61,7 +58,7 @@ public class AddBookViewModel extends ViewModel {
     }
 
     public void addBook(String bookName, String authorName, String authorFamily, String description, String category){
-        Integer bookDataError = validateAddBook(bookName, authorName, authorFamily, description, category);
+        Integer bookDataError = validateAddBook(bookName, authorName, authorFamily, category);
         if(bookDataError != null)
             showError.setValue(new Event<>(bookDataError));
         else {
@@ -86,7 +83,7 @@ public class AddBookViewModel extends ViewModel {
         }
     }
 
-    private @StringRes Integer validateAddBook(String bookName, String authorName, String authorFamily, String description, String category){
+    private @StringRes Integer validateAddBook(String bookName, String authorName, String authorFamily, String category){
         if(bookName == null || bookName.isEmpty())
             return R.string.book_name_empty_error;
         if(authorName == null || authorName.isEmpty())
@@ -96,10 +93,6 @@ public class AddBookViewModel extends ViewModel {
         if(category == null || category.isEmpty())
             return R.string.book_category_empty_error;
         return null;
-    }
-
-    public LiveData<User> getCurrentUser() {
-        return currentUser;
     }
 
     public LiveData<Event<Integer>> getShowError() {

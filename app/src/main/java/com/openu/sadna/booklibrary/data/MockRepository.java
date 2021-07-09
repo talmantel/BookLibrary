@@ -19,7 +19,6 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
 
-@SuppressWarnings("SpellCheckingInspection")
 public class MockRepository implements Repository{
 
 
@@ -306,7 +305,7 @@ public class MockRepository implements Repository{
         final ArrayList<Book> list = new ArrayList<>();
         for(Book book : booksLendHistory){
             if(book.getLendDetails() != null
-                    && book.getLendDetails().getLentTo().getFirstName().equals(currentUser.getValue().getFirstName())
+                    && book.getLendDetails().getLentTo().getFirstName().equals(Objects.requireNonNull(currentUser.getValue()).getFirstName())
                     && book.getLendDetails().getLentTo().getLastName().equals(currentUser.getValue().getLastName())
             ){
                 BookLendDetails lendDetails = new BookLendDetails(book.getLendDetails().getLentTime(), book.getLendDetails().getReturnTime(), null);

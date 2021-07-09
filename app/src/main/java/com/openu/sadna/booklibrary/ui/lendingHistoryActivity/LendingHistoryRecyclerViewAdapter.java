@@ -72,7 +72,7 @@ public class LendingHistoryRecyclerViewAdapter extends RecyclerView.Adapter<Lend
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if (mClickListener != null) mClickListener.onItemClick(getAdapterPosition());
         }
     }
 
@@ -85,7 +85,7 @@ public class LendingHistoryRecyclerViewAdapter extends RecyclerView.Adapter<Lend
     }
 
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(int position);
     }
 
     public void setData(List<Book> mData) {

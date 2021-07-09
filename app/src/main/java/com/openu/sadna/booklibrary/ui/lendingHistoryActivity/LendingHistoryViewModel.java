@@ -10,14 +10,12 @@ import com.openu.sadna.booklibrary.common.NetworkRequestEvent;
 import com.openu.sadna.booklibrary.common.RequestCallback;
 import com.openu.sadna.booklibrary.data.Repository;
 import com.openu.sadna.booklibrary.network.pojo.Book;
-import com.openu.sadna.booklibrary.network.pojo.User;
 
 import java.util.List;
 
 
 public class LendingHistoryViewModel extends ViewModel {
 
-    private final LiveData<User> currentUser;
     private final MutableLiveData<Event<Integer>> showError;
     private final MutableLiveData<Boolean> isLoading;
     private final Repository repository;
@@ -25,7 +23,6 @@ public class LendingHistoryViewModel extends ViewModel {
 
     public LendingHistoryViewModel(Repository repository) {
         this.repository = repository;
-        currentUser = repository.getCurrentUser();
         showError = new MutableLiveData<>();
         isLoading = new MutableLiveData<>();
         lendingHistory = new MutableLiveData<>();
@@ -51,12 +48,6 @@ public class LendingHistoryViewModel extends ViewModel {
                 isLoading.setValue(false);
             }
         });
-    }
-
-
-
-    public LiveData<User> getCurrentUser() {
-        return currentUser;
     }
 
     public LiveData<Event<Integer>> getShowError() {
