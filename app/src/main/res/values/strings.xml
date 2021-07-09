@@ -65,4 +65,11 @@
     <!-- Lending History Activity -->
     <string name="book_lent_time_text">Lent: %1$s</string>
     <string name="book_returned_time_text">Returned: %1$s</string>
+    <string name="no_lending_history_message">You have never lent any books!</string>
+
+    <!-- Lent Books Activity -->
+    <string name="book_lent_to_text">Lent to: %1$s %2$s</string>
+    <string name="book_lent_at_time_text">Lent at: %1$s</string>
+    <string name="action_return_book">Return</string>
+    <string name="no_lent_books_found_message">The are no lent books!</string>
 </resources>

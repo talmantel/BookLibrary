@@ -79,7 +79,7 @@ public class LendingHistoryActivity  extends BaseActivity {
                     lendingHistoryRecyclerViewAdapter.setData(lendingHistory);
                     lendingHistoryRecyclerViewAdapter.notifyDataSetChanged();
                     if (lendingHistory.size() == 0)
-                        Toast.makeText(LendingHistoryActivity.this, R.string.no_matching_books_found_message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LendingHistoryActivity.this, R.string.no_lending_history_message, Toast.LENGTH_SHORT).show();
                 }
             }
         });

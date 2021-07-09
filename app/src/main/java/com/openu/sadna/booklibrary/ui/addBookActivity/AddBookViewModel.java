@@ -61,9 +61,9 @@ public class AddBookViewModel extends ViewModel {
     }
 
     public void addBook(String bookName, String authorName, String authorFamily, String description, String category){
-        Integer credentialsError = validateAddBook(bookName, authorName, authorFamily, description, category);
-        if(credentialsError != null)
-            showError.setValue(new Event<>(credentialsError));
+        Integer bookDataError = validateAddBook(bookName, authorName, authorFamily, description, category);
+        if(bookDataError != null)
+            showError.setValue(new Event<>(bookDataError));
         else {
             isLoading.setValue(true);
             repository.addBook(bookName, authorName, authorFamily, description, category, new RequestCallback<Void>() {

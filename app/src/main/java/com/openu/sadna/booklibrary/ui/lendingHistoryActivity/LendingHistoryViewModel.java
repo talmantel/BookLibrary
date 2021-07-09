@@ -18,7 +18,7 @@ import java.util.List;
 public class LendingHistoryViewModel extends ViewModel {
 
     private final LiveData<User> currentUser;
-    private final MutableLiveData<Event<Integer>> showError = new MutableLiveData<>();
+    private final MutableLiveData<Event<Integer>> showError;
     private final MutableLiveData<Boolean> isLoading;
     private final Repository repository;
     private final MutableLiveData<List<Book>> lendingHistory;
@@ -26,6 +26,7 @@ public class LendingHistoryViewModel extends ViewModel {
     public LendingHistoryViewModel(Repository repository) {
         this.repository = repository;
         currentUser = repository.getCurrentUser();
+        showError = new MutableLiveData<>();
         isLoading = new MutableLiveData<>();
         lendingHistory = new MutableLiveData<>();
         loadLendingHistory();
