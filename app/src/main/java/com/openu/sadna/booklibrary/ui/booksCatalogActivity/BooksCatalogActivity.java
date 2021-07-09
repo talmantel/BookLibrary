@@ -58,6 +58,14 @@ public class BooksCatalogActivity extends BaseActivity {
             }
         });
 
+        viewModel.getShowError().observe(this, new Observer<Event<Integer>>() {
+            @Override
+            public void onChanged(@Nullable Event<Integer> event) {
+                if (event != null && !event.hasBeenHandled())
+                    Toast.makeText(BooksCatalogActivity.this, event.getContentIfNotHandled(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         textQueryEditText = findViewById(R.id.queryEditText);
         categorySpinner = findViewById(R.id.category_spinner);
         booksRecyclerView = findViewById(R.id.books_recycler_view);
@@ -82,14 +90,6 @@ public class BooksCatalogActivity extends BaseActivity {
                     if (books.size() == 0)
                         Toast.makeText(BooksCatalogActivity.this, R.string.no_matching_books_found_message, Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-
-        viewModel.getShowError().observe(this, new Observer<Event<Integer>>() {
-            @Override
-            public void onChanged(@Nullable Event<Integer> event) {
-                if (event != null && !event.hasBeenHandled())
-                    Toast.makeText(BooksCatalogActivity.this, event.getContentIfNotHandled(), Toast.LENGTH_SHORT).show();
             }
         });
 

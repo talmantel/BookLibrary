@@ -21,7 +21,7 @@ public interface Repository {
     void returnBook(int bookID, RequestCallback<Void> callback);
     void getBookReviews(int bookID, RequestCallback<List<Review>> callback);
     void addBookReview(int bookID, String review, RequestCallback<Void> callback);
-    void getUserOrderHistory(RequestCallback<Void> callback);
-    void getLentBooks(RequestCallback<Void> callback);
+    void getUserOrderHistory(RequestCallback<List<Book>> callback);
+    void getLentBooks(RequestCallback<List<Book>> callback);
     void getCategories(RequestCallback<Categories> callback);
 }

@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.openu.sadna.booklibrary.common.NetworkRequestEvent;
 import com.openu.sadna.booklibrary.common.RequestCallback;
 import com.openu.sadna.booklibrary.network.pojo.Book;
+import com.openu.sadna.booklibrary.network.pojo.BookLendDetails;
 import com.openu.sadna.booklibrary.network.pojo.Categories;
 import com.openu.sadna.booklibrary.network.pojo.Review;
 import com.openu.sadna.booklibrary.network.pojo.User;
@@ -29,6 +30,7 @@ public class MockRepository implements Repository{
     private final SharedPrefs sharedPrefs;
 
     private final List<Book> books;
+    private final List<Book> booksLendHistory;
     private final Hashtable<Integer, List<Review>> reviews;
 
     private MockRepository(SharedPrefs sharedPrefs){
@@ -82,42 +84,56 @@ public class MockRepository implements Repository{
         reviews.put(46, new ArrayList<Review>());
 
         books = new ArrayList<>();
-        books.add(new Book("Author", "1", "Book name 1", "Category 1", "Description 1", 1, true));
-        books.add(new Book("Author", "2", "Book name 2", "Category 2", "Description 2", 2, true));
-        books.add(new Book("Author", "3", "Book name 3", "Category 3", "Description 3", 3, true));
-        books.add(new Book("Author", "4", "Book name 4", "Category 4", "Description 4", 4, true));
-        books.add(new Book("Author", "5", "Book name 5", "Category 5", "Description 5", 5, true));
-        books.add(new Book("Author", "6", "Book name 6", "Category 6", "Description 6", 6, false));
-        books.add(new Book("Author", "1", "Book name 1 Very Very Very Long ", "Category 1", "Description 1", 11, true));
-        books.add(new Book("Author", "2", "Book name 2 Very Very Very Long ", "Category 2", "Description 2", 12, true));
-        books.add(new Book("Author", "3", "Book name 3 Very Very Very Long ", "Category 3", "Description 3", 13, true));
-        books.add(new Book("Author", "4", "Book name 4 Very Very Very Long ", "Category 4", "Description 4", 14, true));
-        books.add(new Book("Author", "5", "Book name 5 Very Very Very Long ", "Category 5", "Description 5", 15, true));
-        books.add(new Book("Author", "6", "Book name 6 Very Very Very Long ", "Category 6", "Description 6", 16, false));
-        books.add(new Book("Author", "1", "Book name 1", "Category 1", "Description 1 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 21, true));
-        books.add(new Book("Author", "2", "Book name 2", "Category 2", "Description 2 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 22, true));
-        books.add(new Book("Author", "3", "Book name 3", "Category 3", "Description 3 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 23, true));
-        books.add(new Book("Author", "4", "Book name 4", "Category 4", "Description 4 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 24, true));
-        books.add(new Book("Author", "5", "Book name 5", "Category 5", "Description 5 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 25, true));
-        books.add(new Book("Author", "6", "Book name 6", "Category 6", "Description 6 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 26, false));
-        books.add(new Book("Author", "1", "Book name 1", "Category 1", "Description 1 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 21, true));
-        books.add(new Book("Author", "2", "Book name 2", "Category 2", "Description 2 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 22, true));
-        books.add(new Book("Author", "3", "Book name 3", "Category 3", "Description 3 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 23, true));
-        books.add(new Book("Author", "4", "Book name 4", "Category 4", "Description 4 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 24, true));
-        books.add(new Book("Author", "5", "Book name 5", "Category 5", "Description 5 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 25, true));
-        books.add(new Book("Author", "6", "Book name 6", "Category 6", "Description 6 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 26, false));
-        books.add(new Book("Author", "1 Very Long Name", "Book name 1", "Category 1", "Description 1", 31, true));
-        books.add(new Book("Author", "2 Very Long Name", "Book name 2", "Category 2", "Description 2", 32, true));
-        books.add(new Book("Author", "3 Very Long Name", "Book name 3", "Category 3", "Description 3", 33, true));
-        books.add(new Book("Author", "4 Very Long Name", "Book name 4", "Category 4", "Description 4", 34, true));
-        books.add(new Book("Author", "5 Very Long Name", "Book name 5", "Category 5", "Description 5", 35, true));
-        books.add(new Book("Author", "6 Very Long Name", "Book name 6", "Category 6", "Description 6", 36, false));
-        books.add(new Book("Author", "1 Very Long Name", "Book name 1 Very Very Very Long", "Category 1", "Description 1", 41, true));
-        books.add(new Book("Author", "2 Very Long Name", "Book name 2 Very Very Very Long", "Category 2", "Description 2", 42, true));
-        books.add(new Book("Author", "3 Very Long Name", "Book name 3 Very Very Very Long", "Category 3", "Description 3", 43, true));
-        books.add(new Book("Author", "4 Very Long Name", "Book name 4 Very Very Very Long", "Category 4", "Description 4", 44, true));
-        books.add(new Book("Author", "5 Very Long Name", "Book name 5 Very Very Very Long", "Category 5", "Description 5", 45, true));
-        books.add(new Book("Author", "6 Very Long Name", "Book name 6 Very Very Very Long", "Category 6", "Description 6", 46, false));
+        books.add(new Book("Author", "1", "Book name 1", "Category 1", "Description 1", 1, true, null));
+        books.add(new Book("Author", "2", "Book name 2", "Category 2", "Description 2", 2, true, null));
+        books.add(new Book("Author", "3", "Book name 3", "Category 3", "Description 3", 3, true, null));
+        books.add(new Book("Author", "4", "Book name 4", "Category 4", "Description 4", 4, true, null));
+        books.add(new Book("Author", "5", "Book name 5", "Category 5", "Description 5", 5, true, null));
+        books.add(new Book("Author", "6", "Book name 6", "Category 6", "Description 6", 6, false, null));
+        books.add(new Book("Author", "1", "Book name 1 Very Very Very Long ", "Category 1", "Description 1", 11, true, null));
+        books.add(new Book("Author", "2", "Book name 2 Very Very Very Long ", "Category 2", "Description 2", 12, true, null));
+        books.add(new Book("Author", "3", "Book name 3 Very Very Very Long ", "Category 3", "Description 3", 13, true, null));
+        books.add(new Book("Author", "4", "Book name 4 Very Very Very Long ", "Category 4", "Description 4", 14, true, null));
+        books.add(new Book("Author", "5", "Book name 5 Very Very Very Long ", "Category 5", "Description 5", 15, true, null));
+        books.add(new Book("Author", "6", "Book name 6 Very Very Very Long ", "Category 6", "Description 6", 16, false, null));
+        books.add(new Book("Author", "1", "Book name 1", "Category 1", "Description 1 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 21, true, null));
+        books.add(new Book("Author", "2", "Book name 2", "Category 2", "Description 2 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 22, true, null));
+        books.add(new Book("Author", "3", "Book name 3", "Category 3", "Description 3 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 23, true, null));
+        books.add(new Book("Author", "4", "Book name 4", "Category 4", "Description 4 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 24, true, null));
+        books.add(new Book("Author", "5", "Book name 5", "Category 5", "Description 5 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 25, true, null));
+        books.add(new Book("Author", "6", "Book name 6", "Category 6", "Description 6 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 26, false, null));
+        books.add(new Book("Author", "1", "Book name 1", "Category 1", "Description 1 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 21, true, null));
+        books.add(new Book("Author", "2", "Book name 2", "Category 2", "Description 2 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 22, true, null));
+        books.add(new Book("Author", "3", "Book name 3", "Category 3", "Description 3 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 23, true, null));
+        books.add(new Book("Author", "4", "Book name 4", "Category 4", "Description 4 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 24, true, null));
+        books.add(new Book("Author", "5", "Book name 5", "Category 5", "Description 5 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 25, true, null));
+        books.add(new Book("Author", "6", "Book name 6", "Category 6", "Description 6 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 26, false, null));
+        books.add(new Book("Author", "1 Very Long Name", "Book name 1", "Category 1", "Description 1", 31, true, null));
+        books.add(new Book("Author", "2 Very Long Name", "Book name 2", "Category 2", "Description 2", 32, true, null));
+        books.add(new Book("Author", "3 Very Long Name", "Book name 3", "Category 3", "Description 3", 33, true, null));
+        books.add(new Book("Author", "4 Very Long Name", "Book name 4", "Category 4", "Description 4", 34, true, null));
+        books.add(new Book("Author", "5 Very Long Name", "Book name 5", "Category 5", "Description 5", 35, true, null));
+        books.add(new Book("Author", "6 Very Long Name", "Book name 6", "Category 6", "Description 6", 36, false, null));
+        books.add(new Book("Author", "1 Very Long Name", "Book name 1 Very Very Very Long", "Category 1", "Description 1", 41, true, null));
+        books.add(new Book("Author", "2 Very Long Name", "Book name 2 Very Very Very Long", "Category 2", "Description 2", 42, true, null));
+        books.add(new Book("Author", "3 Very Long Name", "Book name 3 Very Very Very Long", "Category 3", "Description 3", 43, true, null));
+        books.add(new Book("Author", "4 Very Long Name", "Book name 4 Very Very Very Long", "Category 4", "Description 4", 44, true, null));
+        books.add(new Book("Author", "5 Very Long Name", "Book name 5 Very Very Very Long", "Category 5", "Description 5", 45, true, null));
+        books.add(new Book("Author", "6 Very Long Name", "Book name 6 Very Very Very Long", "Category 6", "Description 6", 46, false, null));
+
+        booksLendHistory = new ArrayList<>();
+
+
+        orderBook(1, null);
+        orderBook(11, null);
+        orderBook(21, null);
+        orderBook(31, null);
+        orderBook(41, null);
+        orderBook(51, null);
+
+        returnBook(1, null);
+        returnBook(21, null);
+        returnBook(41, null);
     }
 
 
@@ -172,7 +188,7 @@ public class MockRepository implements Repository{
 
     @Override
     public void addBook(String bookName, String authorName, String authorFamily, String description, String category, final RequestCallback<Void> callback) {
-        books.add(new Book(authorName, authorFamily, bookName, category, description, books.size() + 1, true));
+        books.add(new Book(authorName, authorFamily, bookName, category, description, books.size() + 1, true, null));
         if(callback != null) {
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {
@@ -194,7 +210,7 @@ public class MockRepository implements Repository{
                 || book.getName().contains(textQuery)
                 || book.getDescription().contains(textQuery))
             ){
-                list.add(book);
+                list.add(new Book(book.getAuthorFName(), book.getAuthorLName(), book.getName(), book.getCategory(), book.getDescription(), book.getId(), true, null));
             }
         }
         if(callback != null) {
@@ -210,27 +226,52 @@ public class MockRepository implements Repository{
 
     @Override
     public void orderBook(int bookID, final RequestCallback<Void> callback) {
-        if(callback != null) {
-            final Handler handler = new Handler(Looper.getMainLooper());
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    callback.onNetworkResponse(NetworkRequestEvent.SUCCESS, null);
+        for(Book book : books){
+            if(book.getId() == bookID){
+                if(book.isAvailable()){
+                    BookLendDetails lendDetails = new BookLendDetails(System.currentTimeMillis(), null, currentUser.getValue());
+                    Book newBook = new Book(book.getAuthorFName(), book.getAuthorLName(), book.getName(), book.getCategory(), book.getDescription(), book.getId(), false, lendDetails);
+                    books.remove(book);
+                    books.add(newBook);
+                    booksLendHistory.add(newBook);
+
+                    if(callback != null) {
+                        final Handler handler = new Handler(Looper.getMainLooper());
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.onNetworkResponse(NetworkRequestEvent.SUCCESS, null);
+                            }
+                        }, LOADING_DELAY);
+                    }
                 }
-            }, LOADING_DELAY);
+                break;
+            }
         }
     }
 
     @Override
     public void returnBook(int bookID, final RequestCallback<Void> callback) {
-        if(callback != null) {
-            final Handler handler = new Handler(Looper.getMainLooper());
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    callback.onNetworkResponse(NetworkRequestEvent.SUCCESS, null);
+        for(Book book : books){
+            if(book.getId() == bookID && !book.isAvailable()){
+                BookLendDetails lendDetails = new BookLendDetails(book.getLendDetails().getLentTime(), System.currentTimeMillis(), book.getLendDetails().getLentTo());
+                Book newBook = new Book(book.getAuthorFName(), book.getAuthorLName(), book.getName(), book.getCategory(), book.getDescription(), book.getId(), true, lendDetails);
+                books.remove(book);
+                books.add(newBook);
+                booksLendHistory.remove(book);
+                booksLendHistory.add(newBook);
+
+                if(callback != null) {
+                    final Handler handler = new Handler(Looper.getMainLooper());
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onNetworkResponse(NetworkRequestEvent.SUCCESS, null);
+                        }
+                    }, LOADING_DELAY);
                 }
-            }, LOADING_DELAY);
+                break;
+            }
         }
     }
 
@@ -262,28 +303,42 @@ public class MockRepository implements Repository{
     }
 
     @Override
-    public void getUserOrderHistory(final RequestCallback<Void> callback) {
-        //TODO implement
+    public void getUserOrderHistory(final RequestCallback<List<Book>> callback) {
+        final ArrayList<Book> list = new ArrayList<>();
+        for(Book book : booksLendHistory){
+            if(book.getLendDetails() != null
+                    && book.getLendDetails().getLentTo().getFirstName().equals(currentUser.getValue().getFirstName())
+                    && book.getLendDetails().getLentTo().getLastName().equals(currentUser.getValue().getLastName())
+            ){
+                BookLendDetails lendDetails = new BookLendDetails(book.getLendDetails().getLentTime(), book.getLendDetails().getReturnTime(), null);
+                list.add(new Book(book.getAuthorFName(), book.getAuthorLName(), book.getName(), book.getCategory(), book.getDescription(), book.getId(), true, lendDetails));
+            }
+        }
         if(callback != null) {
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onNetworkResponse(NetworkRequestEvent.SUCCESS, null);
+                    callback.onNetworkResponse(NetworkRequestEvent.SUCCESS, list);
                 }
             }, LOADING_DELAY);
         }
     }
 
     @Override
-    public void getLentBooks(final RequestCallback<Void> callback) {
-        //TODO implement
+    public void getLentBooks(final RequestCallback<List<Book>> callback) {
+        final ArrayList<Book> list = new ArrayList<>();
+        for(Book book : books){
+            if(!book.isAvailable())
+                list.add(book);
+        }
+
         if(callback != null) {
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onNetworkResponse(NetworkRequestEvent.SUCCESS, null);
+                    callback.onNetworkResponse(NetworkRequestEvent.SUCCESS, list);
                 }
             }, LOADING_DELAY);
         }

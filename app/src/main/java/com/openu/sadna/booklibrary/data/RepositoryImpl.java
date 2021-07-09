@@ -115,12 +115,12 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void getUserOrderHistory(RequestCallback<Void> callback) {
+    public void getUserOrderHistory(RequestCallback<List<Book>> callback) {
 
     }
 
     @Override
-    public void getLentBooks(RequestCallback<Void> callback) {
+    public void getLentBooks(RequestCallback<List<Book>> callback) {
 
     }
 

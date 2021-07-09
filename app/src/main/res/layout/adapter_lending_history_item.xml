@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/primaryText"
         android:textSize="@dimen/text_size_medium"
-        app:layout_constraintEnd_toStartOf="@+id/author_name"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="start"
@@ -22,20 +22,7 @@
         android:ellipsize="end"/>
 
     <TextView
-        android:id="@+id/author_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/secondaryText"
-        android:textSize="@dimen/text_size_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Test Author Name"
-        android:maxEms="6"
-        android:singleLine="true"
-        android:ellipsize="end"/>
-
-    <TextView
-        android:id="@+id/book_description"
+        android:id="@+id/book_lent_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="2"
@@ -43,7 +30,19 @@
         android:textColor="@color/secondaryText"
         android:textSize="@dimen/text_size_small"
         app:layout_constraintTop_toBottomOf="@+id/book_name"
-        tools:text="Test Description"
+        tools:text="Lent: 17/09/2021 10:00"
+        android:ellipsize="end"/>
+
+    <TextView
+        android:id="@+id/book_returned_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:textColor="@color/secondaryText"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintTop_toBottomOf="@+id/book_lent_time"
+        tools:text="Returned: 17/09/2021 10:00"
         android:ellipsize="end"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,7 +25,10 @@ public class Book {
     @SerializedName("isAvailable")
     private final boolean isAvailable;
 
-    public Book(String authorFName, String authorLName, String name, String category, String description, int id, boolean isAvailable) {
+    @SerializedName("lendDetails")
+    private final BookLendDetails lendDetails;
+
+    public Book(String authorFName, String authorLName, String name, String category, String description, int id, boolean isAvailable, BookLendDetails lendDetails) {
         this.authorFName = authorFName;
         this.authorLName = authorLName;
         this.name = name;
@@ -33,6 +36,7 @@ public class Book {
         this.description = description;
         this.id = id;
         this.isAvailable = isAvailable;
+        this.lendDetails = lendDetails;
     }
 
     public String getAuthorFName() {
@@ -61,5 +65,9 @@ public class Book {
 
     public boolean isAvailable() {
         return isAvailable;
+    }
+
+    public BookLendDetails getLendDetails() {
+        return lendDetails;
     }
 }

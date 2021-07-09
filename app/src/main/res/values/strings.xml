@@ -1,6 +1,11 @@
 <resources>
 
     <string name="app_name">Book Library</string>
+
+    <!-- Common -->
+    <string name="date_time_format">dd/MM/yyyy HH:mm</string>
+
+    <!-- Titles -->
     <string name="title_activity_login">Login</string>
     <string name="title_activity_add_book">Add Book</string>
     <string name="title_activity_admin_lent_books_tracking">Lent Books</string>
@@ -56,4 +61,8 @@
     <string name="book_author_last_name_empty_error">Author last name cannot be empty!</string>
     <string name="book_category_empty_error">Book category cannot be empty!</string>
     <string name="book_added_message">Book added!</string>
+
+    <!-- Lending History Activity -->
+    <string name="book_lent_time_text">Lent: %1$s</string>
+    <string name="book_returned_time_text">Returned: %1$s</string>
 </resources>
