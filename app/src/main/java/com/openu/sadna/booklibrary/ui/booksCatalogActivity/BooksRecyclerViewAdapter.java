@@ -19,7 +19,7 @@ import java.util.List;
 public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecyclerViewAdapter.ViewHolder> {
 
     private List<Book> mData;
-    private LayoutInflater mInflater;
+    private final LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     public BooksRecyclerViewAdapter(Context context) {
@@ -48,7 +48,9 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView bookNameTextView, authorNameTextView, bookDescriptionTextView;
+        private final TextView bookNameTextView;
+      private final TextView authorNameTextView;
+      private final TextView bookDescriptionTextView;
 
         ViewHolder(View itemView) {
             super(itemView);

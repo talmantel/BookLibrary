@@ -8,7 +8,7 @@ import com.openu.sadna.booklibrary.data.Repository;
 
 public class AdminLentBooksTrackingViewModelFactory implements ViewModelProvider.Factory {
 
-    private Repository repo;
+    private final Repository repo;
 
     public AdminLentBooksTrackingViewModelFactory(Repository repo){
         this.repo = repo;

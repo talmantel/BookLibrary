@@ -7,10 +7,10 @@ import java.util.Date;
 public class Review {
 
     @SerializedName("content")
-    private String content;
+    private final String content;
 
     @SerializedName("time")
-    private long time;
+    private final long time;
 
     public Review(String content, long time) {
         this.content = content;

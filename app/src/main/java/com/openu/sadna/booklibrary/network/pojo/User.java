@@ -5,18 +5,18 @@ import com.google.gson.annotations.SerializedName;
 public class User {
 
     @SerializedName("name")
-    private String firstName;
+    private final String firstName;
 
     @SerializedName("website")
-    private String lastName;
+    private final String lastName;
 
     @SerializedName("username")
-    private String token;
+    private final String token;
 
     @SerializedName("isAdmin")
-    private Boolean isAdmin;
+    private final Boolean isAdmin;
 
-    public User(String firstName, String lastName, String token, boolean isAdmin) {
+    public User(String firstName, String lastName, String token, Boolean isAdmin) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.token = token;

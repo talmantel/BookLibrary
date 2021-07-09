@@ -8,7 +8,7 @@ import com.openu.sadna.booklibrary.data.Repository;
 
 public class LendingHistoryViewModelFactory implements ViewModelProvider.Factory {
 
-    private Repository repo;
+    private final Repository repo;
 
     public LendingHistoryViewModelFactory(Repository repo){
         this.repo = repo;

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Categories {
     @SerializedName("categories")
-    private List<String> categories;
+    private final List<String> categories;
 
     public Categories(List<String> categories) {
         this.categories = categories;

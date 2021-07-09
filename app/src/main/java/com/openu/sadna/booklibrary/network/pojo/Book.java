@@ -5,25 +5,25 @@ import com.google.gson.annotations.SerializedName;
 public class Book {
 
     @SerializedName("authorFName")
-    private String authorFName;
+    private final String authorFName;
 
     @SerializedName("authorLName")
-    private String authorLName;
+    private final String authorLName;
 
     @SerializedName("name")
-    private String name;
+    private final String name;
 
     @SerializedName("category")
-    private String category;
+    private final String category;
 
     @SerializedName("description")
-    private String description;
+    private final String description;
 
     @SerializedName("id")
-    private int id;
+    private final int id;
 
     @SerializedName("isAvailable")
-    private boolean isAvailable;
+    private final boolean isAvailable;
 
     public Book(String authorFName, String authorLName, String name, String category, String description, int id, boolean isAvailable) {
         this.authorFName = authorFName;

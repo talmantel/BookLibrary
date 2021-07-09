@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.openu.sadna.booklibrary">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,12 +11,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup">
 
         <activity android:name=".ui.loginActivity.LoginActivity"
             android:screenOrientation="portrait"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,27 +29,32 @@
         <activity
             android:name=".ui.addBookActivity.AddBookActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_add_book" />
+            android:label="@string/title_activity_add_book"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name=".ui.booksCatalogActivity.BooksCatalogActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_books_catalog" />
+            android:label="@string/title_activity_books_catalog"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name=".ui.bookDetailsActivity.BookDetailsActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_book_details" />
+            android:label="@string/title_activity_book_details"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name=".ui.lendingHistoryActivity.LendingHistoryActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_lending_history" />
+            android:label="@string/title_activity_lending_history"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name=".ui.adminLentBooksTrackingActivity.AdminLentBooksTrackingActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_admin_lent_books_tracking" />
+            android:label="@string/title_activity_admin_lent_books_tracking"
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

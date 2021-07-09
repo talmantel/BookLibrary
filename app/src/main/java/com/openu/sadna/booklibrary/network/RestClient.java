@@ -12,11 +12,11 @@ public class RestClient {
 
     private static final String BASE_URL = "https://jsonplaceholder.typicode.com/"; //TODO
     private static RestClient instance = null;
-    private APIInterface apiService;
+    private final APIInterface apiService;
 
     private RestClient(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        interceptor.level(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
                 .connectTimeout(15, TimeUnit.SECONDS)

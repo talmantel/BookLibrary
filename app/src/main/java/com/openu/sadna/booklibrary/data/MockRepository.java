@@ -18,17 +18,18 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class MockRepository implements Repository{
 
 
     private static final long LOADING_DELAY = 1000;
     private static MockRepository instance = null;
 
-    private MutableLiveData<User> currentUser;
-    private SharedPrefs sharedPrefs;
+    private final MutableLiveData<User> currentUser;
+    private final SharedPrefs sharedPrefs;
 
-    private List<Book> books;
-    private Hashtable<Integer, List<Review>> reviews;
+    private final List<Book> books;
+    private final Hashtable<Integer, List<Review>> reviews;
 
 
     private MockRepository(SharedPrefs sharedPrefs){

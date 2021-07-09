@@ -11,9 +11,9 @@ import com.openu.sadna.booklibrary.network.pojo.User;
 
 public class LendingHistoryViewModel extends ViewModel {
 
-    private LiveData<User> currentUser;
-    private MutableLiveData<Event<Integer>> showError = new MutableLiveData<>();
-    private Repository repository;
+    private final LiveData<User> currentUser;
+    private final MutableLiveData<Event<Integer>> showError = new MutableLiveData<>();
+    private final Repository repository;
 
     public LendingHistoryViewModel(Repository repository) {
         this.repository = repository;

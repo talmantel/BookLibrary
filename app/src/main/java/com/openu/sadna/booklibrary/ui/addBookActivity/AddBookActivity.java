@@ -2,13 +2,10 @@ package com.openu.sadna.booklibrary.ui.addBookActivity;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.openu.sadna.booklibrary.R;
 import com.openu.sadna.booklibrary.ui.BaseActivity;
-import com.openu.sadna.booklibrary.ui.loginActivity.LoginViewModel;
 import com.openu.sadna.booklibrary.util.InjectorUtils;
 
 public class AddBookActivity  extends BaseActivity {

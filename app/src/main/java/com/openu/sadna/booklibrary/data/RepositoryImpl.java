@@ -21,9 +21,9 @@ public class RepositoryImpl implements Repository {
 
     private static Repository instance = null;
 
-    private MutableLiveData<User> currentUser;
-    private APIInterface apiService;
-    private SharedPrefs sharedPrefs;
+    private final MutableLiveData<User> currentUser;
+    private final APIInterface apiService;
+    private final SharedPrefs sharedPrefs;
 
     private RepositoryImpl(APIInterface apiService, SharedPrefs sharedPrefs){
         this.apiService = apiService;

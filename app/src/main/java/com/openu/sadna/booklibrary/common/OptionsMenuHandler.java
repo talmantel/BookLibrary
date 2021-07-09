@@ -1,5 +1,6 @@
 package com.openu.sadna.booklibrary.common;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
@@ -18,7 +19,7 @@ import com.openu.sadna.booklibrary.ui.loginActivity.LoginActivity;
 public class OptionsMenuHandler {
 
     private static OptionsMenuHandler instance = null;
-    private Repository repository;
+    private final Repository repository;
 
     private OptionsMenuHandler(Repository repository){
         this.repository = repository;
@@ -31,6 +32,7 @@ public class OptionsMenuHandler {
     }
 
 
+    @SuppressWarnings("SameReturnValue")
     public boolean onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         menuInflater.inflate(R.menu.menu, menu);
         User user = repository.getCurrentUser().getValue();
@@ -41,6 +43,7 @@ public class OptionsMenuHandler {
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     public boolean onOptionsItemSelected(Context context, MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {

@@ -27,7 +27,8 @@
             android:selectAllOnFocus="true"
             app:layout_constraintVertical_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:autofillHints="name" />
 
         <EditText
             android:id="@+id/lname"
@@ -40,7 +41,8 @@
             android:selectAllOnFocus="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fname" />
+            app:layout_constraintTop_toBottomOf="@+id/fname"
+            android:autofillHints="name"/>
 
         <EditText
             android:id="@+id/username"
@@ -53,7 +55,8 @@
             android:selectAllOnFocus="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lname" />
+            app:layout_constraintTop_toBottomOf="@+id/lname"
+            android:importantForAutofill="no" />
 
         <EditText
             android:id="@+id/password"
@@ -66,7 +69,8 @@
             android:selectAllOnFocus="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            app:layout_constraintTop_toBottomOf="@+id/username"
+            android:importantForAutofill="no" />
 
 
         <EditText
@@ -82,7 +86,8 @@
             android:selectAllOnFocus="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password" />
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/register"

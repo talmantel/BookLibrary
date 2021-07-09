@@ -3,8 +3,8 @@ package com.openu.sadna.booklibrary.common;
 
 public class Resource<T> {
 
-    private T data;
-    private Throwable error;
+    private final T data;
+    private final Throwable error;
 
     public Resource(T data) {
         this.data = data;

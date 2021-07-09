@@ -3,7 +3,7 @@ package com.openu.sadna.booklibrary.common;
 public class Event<T> {
     private boolean hasBeenHandled = false;
 
-    private T content;
+    private final T content;
 
     public Event(T content){
         this.content = content;
@@ -16,6 +16,7 @@ public class Event<T> {
         return content;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean hasBeenHandled() {
         return hasBeenHandled;
     }

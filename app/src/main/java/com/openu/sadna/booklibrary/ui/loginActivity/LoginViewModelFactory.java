@@ -1,14 +1,14 @@
 package com.openu.sadna.booklibrary.ui.loginActivity;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.annotation.NonNull;
 
 import com.openu.sadna.booklibrary.data.Repository;
 
 public class LoginViewModelFactory implements ViewModelProvider.Factory {
 
-    private Repository repo;
+    private final Repository repo;
 
     public LoginViewModelFactory(Repository repo){
         this.repo = repo;

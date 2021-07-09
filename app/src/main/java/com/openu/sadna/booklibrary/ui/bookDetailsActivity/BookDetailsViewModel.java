@@ -15,9 +15,9 @@ import java.util.List;
 
 public class BookDetailsViewModel extends ViewModel {
 
-    private LiveData<User> currentUser;
-    private MutableLiveData<Event<Integer>> showError = new MutableLiveData<>();
-    private Repository repository;
+    private final LiveData<User> currentUser;
+    private final MutableLiveData<Event<Integer>> showError = new MutableLiveData<>();
+    private final Repository repository;
     private MutableLiveData<Boolean> isLoading;
     private MutableLiveData<Book> book;
     private MutableLiveData<List<Review>> reviews;

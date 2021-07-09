@@ -18,12 +18,12 @@ import java.util.List;
 
 public class BooksCatalogViewModel extends ViewModel {
 
-    private LiveData<User> currentUser;
-    private MutableLiveData<Event<Integer>> showError;
-    private MutableLiveData<Boolean> isLoading;
-    private Repository repository;
-    private MutableLiveData<List<Book>> books;
-    private MutableLiveData<Categories> categories;
+    private final LiveData<User> currentUser;
+    private final MutableLiveData<Event<Integer>> showError;
+    private final MutableLiveData<Boolean> isLoading;
+    private final Repository repository;
+    private final MutableLiveData<List<Book>> books;
+    private final MutableLiveData<Categories> categories;
     private int loadingCount;
 
     public BooksCatalogViewModel(Repository repository) {

@@ -11,8 +11,8 @@ import com.openu.sadna.booklibrary.network.pojo.User;
 
 public class AddBookViewModel extends ViewModel {
 
-    private LiveData<User> currentUser;
-    private Repository repository;
+    private final LiveData<User> currentUser;
+    private final Repository repository;
 
     public AddBookViewModel(Repository repository) {
         this.repository = repository;

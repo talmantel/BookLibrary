@@ -8,7 +8,7 @@ import com.openu.sadna.booklibrary.data.Repository;
 
 public class AddBookViewModelFactory implements ViewModelProvider.Factory {
 
-    private Repository repo;
+    private final Repository repo;
 
     public AddBookViewModelFactory(Repository repo){
         this.repo = repo;

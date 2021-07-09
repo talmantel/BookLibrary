@@ -16,10 +16,10 @@ import org.jetbrains.annotations.NotNull;
 
 public class LoginViewModel extends ViewModel {
 
-    private LiveData<User> currentUser;
-    private MutableLiveData<Boolean> isLoading;
-    private MutableLiveData<Event<Integer>> showError;
-    private Repository repository;
+    private final LiveData<User> currentUser;
+    private final MutableLiveData<Boolean> isLoading;
+    private final MutableLiveData<Event<Integer>> showError;
+    private final Repository repository;
 
     public LoginViewModel(Repository repository) {
         this.repository = repository;
