@@ -131,15 +131,31 @@ public class MockRepository implements Repository{
         booksLendHistory = new ArrayList<>();
 
 
-        orderBook(1, null);
-        orderBook(11, null);
-        orderBook(21, null);
-        orderBook(31, null);
-        orderBook(41, null);
+        mockOrderBook(1);
+        mockOrderBook(11);
+        mockOrderBook(21);
+        mockOrderBook(31);
+        mockOrderBook(41);
 
         returnBook(1, null);
         returnBook(21, null);
         returnBook(41, null);
+    }
+
+    private void mockOrderBook(int bookID) {
+        User user = new User("Tal", "Mantelmakher", null, true);
+        for(Book book : books){
+            if(book.getId() == bookID){
+                if(book.isAvailable()){
+                    BookLendDetails lendDetails = new BookLendDetails(System.currentTimeMillis(), null, user);
+                    Book newBook = new Book(book.getAuthorFName(), book.getAuthorLName(), book.getName(), book.getCategory(), book.getDescription(), book.getId(), false, lendDetails);
+                    books.remove(book);
+                    books.add(newBook);
+                    booksLendHistory.add(newBook);
+                }
+                break;
+            }
+        }
     }
 
 
@@ -216,7 +232,7 @@ public class MockRepository implements Repository{
                 || book.getName().contains(textQuery)
                 || book.getDescription().contains(textQuery))
             ){
-                list.add(new Book(book.getAuthorFName(), book.getAuthorLName(), book.getName(), book.getCategory(), book.getDescription(), book.getId(), true, null));
+                list.add(new Book(book.getAuthorFName(), book.getAuthorLName(), book.getName(), book.getCategory(), book.getDescription(), book.getId(), book.isAvailable(), null));
             }
         }
         if(callback != null) {
@@ -234,12 +250,19 @@ public class MockRepository implements Repository{
     public void getBook(int bookID, final RequestCallback<Book> callback) {
         for(final Book book : books){
             if(book.getId() == bookID) {
+                final Book toSend;
+                if(book.getLendDetails() != null && book.getLendDetails().getLentTo() != null &&
+                        (!book.getLendDetails().getLentTo().getFirstName().equals(Objects.requireNonNull(currentUser.getValue()).getFirstName())
+                        || !book.getLendDetails().getLentTo().getLastName().equals(currentUser.getValue().getLastName()) ))
+                    toSend = new Book(book.getAuthorFName(), book.getAuthorLName(), book.getName(), book.getCategory(), book.getDescription(), book.getId(), book.isAvailable(), null);
+                else
+                    toSend = book;
                 if (callback != null) {
                     final Handler handler = new Handler(Looper.getMainLooper());
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            callback.onNetworkResponse(NetworkRequestEvent.SUCCESS, book);
+                            callback.onNetworkResponse(NetworkRequestEvent.SUCCESS, toSend);
                         }
                     }, LOADING_DELAY);
                 }
