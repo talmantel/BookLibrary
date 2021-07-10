@@ -22,9 +22,9 @@
         <item name="android:paddingEnd">@dimen/spacing_inside_small</item>
     </style>
 
-    <style name="actionButtonStyle" parent="@style/Widget.AppCompat.Button">
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:background">@color/colorPrimary</item>
+    <style name="actionButtonStyle" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:textColor">@drawable/selector_button_text</item>
+        <item name="android:backgroundTint">@drawable/selector_button_background</item>
         <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:paddingTop">@dimen/spacing_inside_small</item>
         <item name="android:paddingBottom">@dimen/spacing_inside_small</item>

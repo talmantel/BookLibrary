@@ -2,8 +2,6 @@ package com.openu.sadna.booklibrary.network.pojo;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class Review {
 
     @SerializedName("content")
@@ -12,16 +10,24 @@ public class Review {
     @SerializedName("time")
     private final long time;
 
-    public Review(String content, long time) {
+    @SerializedName("reviewer")
+    private final User reviewer;
+
+    public Review(String content, long time, User reviewer) {
         this.content = content;
         this.time = time;
+        this.reviewer = reviewer;
     }
 
     public String getContent() {
         return content;
     }
 
-    public Date getTime() {
-        return new Date(time);
+    public long getTime() {
+        return time;
+    }
+
+    public User getReviewer() {
+        return reviewer;
     }
 }

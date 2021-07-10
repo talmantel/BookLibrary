@@ -67,6 +67,7 @@ public class BooksCatalogActivity extends BaseActivity {
 
         textQueryEditText = findViewById(R.id.queryEditText);
         categorySpinner = findViewById(R.id.category_spinner);
+
         RecyclerView booksRecyclerView = findViewById(R.id.books_recycler_view);
         booksRecyclerViewAdapter = new BooksRecyclerViewAdapter(this);
         booksRecyclerViewAdapter.setClickListener(new BooksRecyclerViewAdapter.ItemClickListener() {

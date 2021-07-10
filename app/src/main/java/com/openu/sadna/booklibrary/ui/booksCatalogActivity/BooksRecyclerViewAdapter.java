@@ -38,8 +38,13 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
     public void onBindViewHolder(ViewHolder holder, int position) {
         Book book = mData.get(position);
         holder.bookNameTextView.setText(book.getName());
-        holder.authorNameTextView.setText(holder.itemView.getContext().getString(R.string.book_author_text, book.getAuthorFName(), book.getAuthorLName()));
-        holder.bookDescriptionTextView.setText(book.getDescription());
+        holder.authorNameTextView.setText(holder.itemView.getContext().getString(R.string.book_author_full_name_text, book.getAuthorFName(), book.getAuthorLName()));
+        if(book.getDescription() != null && !book.getDescription().isEmpty()) {
+            holder.bookDescriptionTextView.setText(book.getDescription());
+            holder.bookDescriptionTextView.setVisibility(View.VISIBLE);
+        }
+        else
+            holder.bookDescriptionTextView.setVisibility(View.GONE);
     }
 
     @Override

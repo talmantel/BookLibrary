@@ -38,18 +38,18 @@ public class MockRepository implements Repository{
 
         reviews = new Hashtable<>();
         ArrayList<Review> bookReviews = new ArrayList<>();
-        bookReviews.add(new Review("Review 1 short", System.currentTimeMillis()));
-        bookReviews.add(new Review("Review 2 A little longer", System.currentTimeMillis()));
-        bookReviews.add(new Review("Review 3 VERY VERY VERY VERY VERY  VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY LONG LING", System.currentTimeMillis()));
-        bookReviews.add(new Review("Review 4 Multi line: \n MULTI LINE: \n ANOTHER LINE \n ANOTHER LINE", System.currentTimeMillis()));
-        bookReviews.add(new Review("2 Review 1 short", System.currentTimeMillis() - 1000*60*60));
-        bookReviews.add(new Review("2 Review 2 A little longer", System.currentTimeMillis() - 1000*60*60));
-        bookReviews.add(new Review("2 Review 3 VERY VERY VERY VERY VERY  VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY LONG LING", System.currentTimeMillis() - 1000*60*60));
-        bookReviews.add(new Review("2 Review 4 Multi line: \n MULTI LINE: \n ANOTHER LINE \n ANOTHER LINE", System.currentTimeMillis() - 1000*60*60));
-        bookReviews.add(new Review("3 Review 1 short", System.currentTimeMillis() - 1000*60*60*10));
-        bookReviews.add(new Review("3 Review 2 A little longer", System.currentTimeMillis() - 1000*60*60*10));
-        bookReviews.add(new Review("3 Review 3 VERY VERY VERY VERY VERY  VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY LONG LING", System.currentTimeMillis() - 1000*60*60*10));
-        bookReviews.add(new Review("3 Review 4 Multi line: \n MULTI LINE: \n ANOTHER LINE \n ANOTHER LINE", System.currentTimeMillis() - 1000*60*60*10));
+        bookReviews.add(new Review("Review 1 short", System.currentTimeMillis(), currentUser.getValue()));
+        bookReviews.add(new Review("Review 2 A little longer", System.currentTimeMillis(), currentUser.getValue()));
+        bookReviews.add(new Review("Review 3 VERY VERY VERY VERY VERY  VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY LONG LING", System.currentTimeMillis(), currentUser.getValue()));
+        bookReviews.add(new Review("Review 4 Multi line: \n MULTI LINE: \n ANOTHER LINE \n ANOTHER LINE", System.currentTimeMillis(), currentUser.getValue()));
+        bookReviews.add(new Review("2 Review 1 short", System.currentTimeMillis() - 1000*60*60, currentUser.getValue()));
+        bookReviews.add(new Review("2 Review 2 A little longer", System.currentTimeMillis() - 1000*60*60, currentUser.getValue()));
+        bookReviews.add(new Review("2 Review 3 VERY VERY VERY VERY VERY  VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY LONG LING", System.currentTimeMillis() - 1000*60*60, currentUser.getValue()));
+        bookReviews.add(new Review("2 Review 4 Multi line: \n MULTI LINE: \n ANOTHER LINE \n ANOTHER LINE", System.currentTimeMillis() - 1000*60*60, currentUser.getValue()));
+        bookReviews.add(new Review("3 Review 1 short", System.currentTimeMillis() - 1000*60*60*10, currentUser.getValue()));
+        bookReviews.add(new Review("3 Review 2 A little longer", System.currentTimeMillis() - 1000*60*60*10, currentUser.getValue()));
+        bookReviews.add(new Review("3 Review 3 VERY VERY VERY VERY VERY  VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY VE VERY VERY VERY LONG LING", System.currentTimeMillis() - 1000*60*60*10, currentUser.getValue()));
+        bookReviews.add(new Review("3 Review 4 Multi line: \n MULTI LINE: \n ANOTHER LINE \n ANOTHER LINE", System.currentTimeMillis() - 1000*60*60*10, currentUser.getValue()));
 
         reviews.put(1, bookReviews);
         reviews.put(2, bookReviews);
@@ -81,6 +81,13 @@ public class MockRepository implements Repository{
         reviews.put(44, new ArrayList<Review>());
         reviews.put(45, new ArrayList<Review>());
         reviews.put(46, new ArrayList<Review>());
+        reviews.put(51, new ArrayList<Review>());
+        reviews.put(52, new ArrayList<Review>());
+        reviews.put(53, new ArrayList<Review>());
+        reviews.put(54, new ArrayList<Review>());
+        reviews.put(55, new ArrayList<Review>());
+        reviews.put(56, new ArrayList<Review>());
+        reviews.put(100, new ArrayList<Review>());
 
         books = new ArrayList<>();
         books.add(new Book("Author", "1", "Book name 1", "Category 1", "Description 1", 1, true, null));
@@ -101,24 +108,25 @@ public class MockRepository implements Repository{
         books.add(new Book("Author", "4", "Book name 4", "Category 4", "Description 4 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 24, true, null));
         books.add(new Book("Author", "5", "Book name 5", "Category 5", "Description 5 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 25, true, null));
         books.add(new Book("Author", "6", "Book name 6", "Category 6", "Description 6 Very Very Very Very Long Very Very Long Very Very Long Very Very Long", 26, true, null));
-        books.add(new Book("Author", "1", "Book name 1", "Category 1", "Description 1 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 21, true, null));
-        books.add(new Book("Author", "2", "Book name 2", "Category 2", "Description 2 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 22, true, null));
-        books.add(new Book("Author", "3", "Book name 3", "Category 3", "Description 3 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 23, true, null));
-        books.add(new Book("Author", "4", "Book name 4", "Category 4", "Description 4 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 24, true, null));
-        books.add(new Book("Author", "5", "Book name 5", "Category 5", "Description 5 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 25, true, null));
-        books.add(new Book("Author", "6", "Book name 6", "Category 6", "Description 6 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 26, true, null));
-        books.add(new Book("Author", "1 Very Long Name", "Book name 1", "Category 1", "Description 1", 31, true, null));
-        books.add(new Book("Author", "2 Very Long Name", "Book name 2", "Category 2", "Description 2", 32, true, null));
-        books.add(new Book("Author", "3 Very Long Name", "Book name 3", "Category 3", "Description 3", 33, true, null));
-        books.add(new Book("Author", "4 Very Long Name", "Book name 4", "Category 4", "Description 4", 34, true, null));
-        books.add(new Book("Author", "5 Very Long Name", "Book name 5", "Category 5", "Description 5", 35, true, null));
-        books.add(new Book("Author", "6 Very Long Name", "Book name 6", "Category 6", "Description 6", 36, true, null));
-        books.add(new Book("Author", "1 Very Long Name", "Book name 1 Very Very Very Long", "Category 1", "Description 1", 41, true, null));
-        books.add(new Book("Author", "2 Very Long Name", "Book name 2 Very Very Very Long", "Category 2", "Description 2", 42, true, null));
-        books.add(new Book("Author", "3 Very Long Name", "Book name 3 Very Very Very Long", "Category 3", "Description 3", 43, true, null));
-        books.add(new Book("Author", "4 Very Long Name", "Book name 4 Very Very Very Long", "Category 4", "Description 4", 44, true, null));
-        books.add(new Book("Author", "5 Very Long Name", "Book name 5 Very Very Very Long", "Category 5", "Description 5", 45, true, null));
-        books.add(new Book("Author", "6 Very Long Name", "Book name 6 Very Very Very Long", "Category 6", "Description 6", 46, true, null));
+        books.add(new Book("Author", "1", "Book name 1", "Category 1", "Description 1 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 31, true, null));
+        books.add(new Book("Author", "2", "Book name 2", "Category 2", "Description 2 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 32, true, null));
+        books.add(new Book("Author", "3", "Book name 3", "Category 3", "Description 3 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 33, true, null));
+        books.add(new Book("Author", "4", "Book name 4", "Category 4", "Description 4 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 34, true, null));
+        books.add(new Book("Author", "5", "Book name 5", "Category 5", "Description 5 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 35, true, null));
+        books.add(new Book("Author", "6", "Book name 6", "Category 6", "Description 6 Mega Very Very Very Long Very Very Long Very Very Long Very Very Long Mega Very Mega Very Mega Very Mega Very Mega Very Mega Very", 36, true, null));
+        books.add(new Book("Author", "1 Very Long Name", "Book name 1", "Category 1", "Description 1", 41, true, null));
+        books.add(new Book("Author", "2 Very Long Name", "Book name 2", "Category 2", "Description 2", 42, true, null));
+        books.add(new Book("Author", "3 Very Long Name", "Book name 3", "Category 3", "Description 3", 43, true, null));
+        books.add(new Book("Author", "4 Very Long Name", "Book name 4", "Category 4", "Description 4", 44, true, null));
+        books.add(new Book("Author", "5 Very Long Name", "Book name 5", "Category 5", "Description 5", 45, true, null));
+        books.add(new Book("Author", "6 Very Long Name", "Book name 6", "Category 6", "Description 6", 46, true, null));
+        books.add(new Book("Author", "1 Very Long Name", "Book name 1 Very Very Very Long", "Category 1", "Description 1", 51, true, null));
+        books.add(new Book("Author", "2 Very Long Name", "Book name 2 Very Very Very Long", "Category 2", "Description 2", 52, true, null));
+        books.add(new Book("Author", "3 Very Long Name", "Book name 3 Very Very Very Long", "Category 3", "Description 3", 53, true, null));
+        books.add(new Book("Author", "4 Very Long Name", "Book name 4 Very Very Very Long", "Category 4", "Description 4", 54, true, null));
+        books.add(new Book("Author", "5 Very Long Name", "Book name 5 Very Very Very Long", "Category 5", "Description 5", 55, true, null));
+        books.add(new Book("Author", "6 Very Long Name", "Book name 6 Very Very Very Long", "Category 6", "Description 6", 56, true, null));
+        books.add(new Book("Author", "Of long books", "Book name 1", "Category 1", "This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! This is an EXTREMELY long description! ", 100, true, null));
 
         booksLendHistory = new ArrayList<>();
 
@@ -306,7 +314,7 @@ public class MockRepository implements Repository{
 
     @Override
     public void addBookReview(int bookID, String review, final RequestCallback<Void> callback) {
-        Objects.requireNonNull(reviews.get(bookID)).add(new Review(review, System.currentTimeMillis()));
+        Objects.requireNonNull(reviews.get(bookID)).add(new Review(review, System.currentTimeMillis(), currentUser.getValue()));
         if(callback != null) {
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {

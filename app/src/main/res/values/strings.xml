@@ -4,8 +4,10 @@
 
     <!-- Common -->
     <string name="date_time_format">dd/MM/yyyy HH:mm</string>
+    <string name="date_format">dd/MM/yyyy</string>
     <string name="book_returned_message">Book returned!</string>
     <string name="action_return_book">Return</string>
+    <string name="book_author_full_name_text">%1$s %2$s</string>
 
     <!-- Titles -->
     <string name="title_activity_login">@string/app_name</string>
@@ -48,7 +50,6 @@
     <string name="action_search">Search</string>
     <string name="no_matching_books_found_message">No matching books found!</string>
     <string name="all_categories_spinner_item">All Categories</string>
-    <string name="book_author_text">%1$s %2$s</string>
 
 
     <!-- Add Book Activity -->
@@ -76,6 +77,15 @@
 
     <!-- Book Details Activity -->
     <string name="book_ordered_message">Book ordered!</string>
-    <string name="action_order_book">Order</string>
+    <string name="review_added_message">Review submitted!</string>
+    <string name="prompt_review">Write a review..</string>
+    <string name="action_add_review">></string>
+    <string name="action_order">Order</string>
+    <string name="action_order_already_ordered">Ordered: %1$s</string>
+    <string name="action_order_unavailable">Unavailable</string>
+    <string name="no_book_description_message">This book has no description</string>
+    <string name="reviewer_name_text">%1$s %2$s</string>
+    <string name="author_name_text">By: %1$s %2$s</string>
+    <string name="category_text">Category: %1$s</string>
 
 </resources>

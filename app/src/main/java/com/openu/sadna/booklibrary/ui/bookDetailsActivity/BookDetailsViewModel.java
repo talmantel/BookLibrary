@@ -1,7 +1,9 @@
 package com.openu.sadna.booklibrary.ui.bookDetailsActivity;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.openu.sadna.booklibrary.R;
@@ -19,7 +21,7 @@ import java.util.List;
 public class BookDetailsViewModel extends ViewModel {
 
     protected enum Events{
-        RETURN_BOOK_SUCCESS, ORDER_BOOK_SUCCESS
+        RETURN_BOOK_SUCCESS, ORDER_BOOK_SUCCESS, ADD_REVIEW_SUCCESS
     }
 
     private final LiveData<User> currentUser;
@@ -29,6 +31,7 @@ public class BookDetailsViewModel extends ViewModel {
     private final MutableLiveData<Boolean> isLoading;
     private final MutableLiveData<Book> book;
     private final MutableLiveData<List<Review>> reviews;
+    private final MediatorLiveData<Boolean> showReturnBookOption;
     private int loadingCount;
     private int bookID;
 
@@ -40,6 +43,28 @@ public class BookDetailsViewModel extends ViewModel {
         handleEvent = new MutableLiveData<>();
         book = new MutableLiveData<>();
         reviews = new MutableLiveData<>();
+        showReturnBookOption = new MediatorLiveData<>();
+
+        showReturnBookOption.addSource(currentUser, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                updateShouldReturnBookOption();
+            }
+        });
+
+        showReturnBookOption.addSource(book, new Observer<Book>() {
+            @Override
+            public void onChanged(Book book) {
+                updateShouldReturnBookOption();
+            }
+        });
+    }
+
+    private void updateShouldReturnBookOption(){
+        if(currentUser.getValue() == null || !currentUser.getValue().isAdmin() || book.getValue() == null || book.getValue().isAvailable())
+            showReturnBookOption.setValue(false);
+        else
+            showReturnBookOption.setValue(true);
     }
 
     public void loadBook(int bookID){
@@ -134,6 +159,28 @@ public class BookDetailsViewModel extends ViewModel {
         });
     }
 
+    public void submitReview(String review){
+        addToLoad();
+        repository.addBookReview(bookID, review, new RequestCallback<Void>() {
+            @Override
+            public void onNetworkResponse(NetworkRequestEvent event, Void data) {
+                switch (event) {
+                    case SUCCESS:
+                        loadBookReviews();
+                        handleEvent.setValue(new Event<>(Events.ADD_REVIEW_SUCCESS));
+                        break;
+                    case NETWORK_ERROR:
+                        showError.setValue(new Event<>(R.string.network_error));
+                        break;
+                    case SERVER_ERROR:
+                        showError.setValue(new Event<>(R.string.server_error));
+                        break;
+                }
+                itemLoaded();
+            }
+        });
+    }
+
     public LiveData<Event<Integer>> getShowError() {
         return showError;
     }
@@ -164,11 +211,11 @@ public class BookDetailsViewModel extends ViewModel {
         isLoading.setValue(loadingCount > 0);
     }
 
-    public LiveData<User> getCurrentUser() {
-        return currentUser;
-    }
-
     public LiveData<Event<Events>> getEventsToHandle() {
         return handleEvent;
+    }
+
+    public LiveData<Boolean> getShowReturnBookOption() {
+        return showReturnBookOption;
     }
 }
