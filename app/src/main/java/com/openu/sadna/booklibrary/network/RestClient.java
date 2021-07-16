@@ -8,6 +8,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+//Rest API client configuration
 public class RestClient {
 
     private static final String BASE_URL = "https://jsonplaceholder.typicode.com/"; //TODO

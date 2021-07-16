@@ -9,6 +9,7 @@ import com.openu.sadna.booklibrary.util.InjectorUtils;
 
 import org.jetbrains.annotations.NotNull;
 
+//Base class for all activities - implements the action bar (options menu)
 public class BaseActivity extends AppCompatActivity {
 
     @Override

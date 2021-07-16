@@ -19,6 +19,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
 
+//A mock repository to test app behaviour, implements app logic in
 public class MockRepository implements Repository{
 
 

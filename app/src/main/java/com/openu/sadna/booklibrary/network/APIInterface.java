@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
+//API interface implementation for Retrofit
 public interface APIInterface {
 
     @GET("/users/1")

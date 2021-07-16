@@ -13,6 +13,7 @@ import com.openu.sadna.booklibrary.ui.booksCatalogActivity.BooksCatalogViewModel
 import com.openu.sadna.booklibrary.ui.lendingHistoryActivity.LendingHistoryViewModelFactory;
 import com.openu.sadna.booklibrary.ui.loginActivity.LoginViewModelFactory;
 
+//Dependency injection helper - Useful for switching dependencies (e.g using MockRepository instead of real one)
 public class InjectorUtils {
 
     private static Repository getRepository(Application application)  {

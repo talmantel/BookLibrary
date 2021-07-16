@@ -17,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//The real repository of the app
 public class RepositoryImpl implements Repository {
 
     private static Repository instance = null;

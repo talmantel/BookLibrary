@@ -16,6 +16,7 @@ import com.openu.sadna.booklibrary.ui.booksCatalogActivity.BooksCatalogActivity;
 import com.openu.sadna.booklibrary.ui.lendingHistoryActivity.LendingHistoryActivity;
 import com.openu.sadna.booklibrary.ui.loginActivity.LoginActivity;
 
+//Controller for the action bar (options menu), used by BaseActivity and any class that extends it
 public class OptionsMenuHandler {
 
     private static OptionsMenuHandler instance = null;

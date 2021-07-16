@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 
 import com.openu.sadna.booklibrary.network.pojo.User;
 
+//Implementation of Shared Preferences storage
 public class SharedPrefs {
 
     private final SharedPreferences sharedPrefs;
