@@ -7,7 +7,7 @@ public class User {
     @SerializedName("name")
     private final String firstName;
 
-    @SerializedName("website")
+    @SerializedName("lastName")
     private final String lastName;
 
     @SerializedName("username")
