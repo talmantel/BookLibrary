@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class User {
 
-    @SerializedName("name")
+    @SerializedName("firstname")
     private final String firstName;
 
-    @SerializedName("lastName")
+    @SerializedName("lastname")
     private final String lastName;
 
-    @SerializedName("username")
+    @SerializedName("token")
     private final String token;
 
     @SerializedName("isAdmin")

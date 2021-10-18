@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class Book {
 
-    @SerializedName("authorFName")
+    @SerializedName("authorName")
     private final String authorFName;
 
-    @SerializedName("authorLName")
+    @SerializedName("authorFamily")
     private final String authorLName;
 
-    @SerializedName("name")
+    @SerializedName("bookName")
     private final String name;
 
     @SerializedName("category")
@@ -19,13 +19,13 @@ public class Book {
     @SerializedName("description")
     private final String description;
 
-    @SerializedName("id")
+    @SerializedName("isbn")
     private final int id;
 
-    @SerializedName("isAvailable")
+    @SerializedName("available")
     private final boolean isAvailable;
 
-    @SerializedName("lendDetails")
+    @SerializedName("lentDetails")
     private final BookLendDetails lendDetails;
 
     public Book(String authorFName, String authorLName, String name, String category, String description, int id, boolean isAvailable, BookLendDetails lendDetails) {

@@ -11,7 +11,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 //Rest API client configuration
 public class RestClient {
 
-    private static final String BASE_URL = "https://jsonplaceholder.typicode.com/"; //TODO
+    //private static final String BASE_URL = "http://192.168.43.154/";
+    private static final String BASE_URL = "http://192.168.1.11:8081/";
     private static RestClient instance = null;
     private final APIInterface apiService;
 

@@ -41,8 +41,8 @@
     <string name="action_register">Register</string>
     <string name="first_name_empty_error">First name cannot be empty!</string>
     <string name="last_name_empty_error">Last name cannot be empty!</string>
-    <string name="username_illegal_error">Username must be at least 6 characters!</string>
-    <string name="password_illegal_error">Password must be at least 6 characters!</string>
+    <string name="username_illegal_error">Username must be at least 4 characters!</string>
+    <string name="password_illegal_error">Password must be at least 4 characters!</string>
     <string name="passwords_dont_match_error">Password and repeat password do not match!</string>
 
     <!-- Book Catalog Activity -->
@@ -53,12 +53,14 @@
 
 
     <!-- Add Book Activity -->
+    <string name="prompt_book_isbn">Book ISBN</string>
     <string name="prompt_book_name">Book Name</string>
     <string name="prompt_author_first_name">Author First Name</string>
     <string name="prompt_author_last_name">Author Last Name</string>
     <string name="prompt_book_description">Book Description</string>
     <string name="prompt_book_category">Category:</string>
     <string name="action_add_book">Add Book</string>
+    <string name="book_isbn_empty_error">Book ISBN cannot be empty!</string>
     <string name="book_name_empty_error">Book name cannot be empty!</string>
     <string name="book_author_first_name_empty_error">Author first name cannot be empty!</string>
     <string name="book_author_last_name_empty_error">Author last name cannot be empty!</string>

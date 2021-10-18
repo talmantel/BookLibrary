@@ -61,7 +61,8 @@ public class BookDetailsViewModel extends ViewModel {
     }
 
     private void updateShouldReturnBookOption(){
-        if(currentUser.getValue() == null || !currentUser.getValue().isAdmin() || book.getValue() == null || book.getValue().isAvailable())
+        boolean shouldShowReturn = book.getValue() != null && book.getValue().getLendDetails() != null;
+        if(!shouldShowReturn && (currentUser.getValue() == null || !currentUser.getValue().isAdmin() || book.getValue() == null || book.getValue().isAvailable()))
             showReturnBookOption.setValue(false);
         else
             showReturnBookOption.setValue(true);

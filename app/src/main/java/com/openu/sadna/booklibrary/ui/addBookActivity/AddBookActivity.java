@@ -93,11 +93,17 @@ public class AddBookActivity  extends BaseActivity {
     }
 
     private void addBook(){
-        String bookName = ((TextView) findViewById(R.id.book_name)).getText().toString();
-        String authorFirstName = ((TextView) findViewById(R.id.author_fname)).getText().toString();
-        String authorLastName = ((TextView) findViewById(R.id.author_lname)).getText().toString();
-        String bookDescription = ((TextView) findViewById(R.id.book_description)).getText().toString();
-        String category = (String) categorySpinner.getSelectedItem();
-        viewModel.addBook(bookName, authorFirstName, authorLastName, bookDescription, category);
+        String bookISBNString = ((TextView) findViewById(R.id.book_isbn)).getText().toString();
+        if(bookISBNString.isEmpty())
+            Toast.makeText(this, R.string.book_isbn_empty_error, Toast.LENGTH_SHORT).show();
+        else {
+            int bookISBN = Integer.parseInt(bookISBNString);
+            String bookName = ((TextView) findViewById(R.id.book_name)).getText().toString();
+            String authorFirstName = ((TextView) findViewById(R.id.author_fname)).getText().toString();
+            String authorLastName = ((TextView) findViewById(R.id.author_lname)).getText().toString();
+            String bookDescription = ((TextView) findViewById(R.id.book_description)).getText().toString();
+            String category = (String) categorySpinner.getSelectedItem();
+            viewModel.addBook(bookISBN, bookName, authorFirstName, authorLastName, bookDescription, category);
+        }
     }
 }

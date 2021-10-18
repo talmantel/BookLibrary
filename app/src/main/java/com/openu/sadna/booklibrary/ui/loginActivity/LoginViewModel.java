@@ -29,25 +29,30 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void login(@NotNull String username, @NotNull String password) {
-        isLoading.setValue(true);
-        repository.login(username, password, new RequestCallback<Void>() {
-            @Override
-            public void onNetworkResponse(@NotNull NetworkRequestEvent event, Void data) {
-                switch (event){
-                    case SUCCESS:
-                        if(currentUser.getValue() == null)
+        Integer credentialsError = validateLogin(username, password);
+        if(credentialsError != null)
+            showError.setValue(new Event<>(credentialsError));
+        else {
+            isLoading.setValue(true);
+            repository.login(username, password, new RequestCallback<Void>() {
+                @Override
+                public void onNetworkResponse(@NotNull NetworkRequestEvent event, Void data) {
+                    switch (event) {
+                        case SUCCESS:
+                            if (currentUser.getValue() == null)
+                                showError.setValue(new Event<>(R.string.invalid_credentials));
+                            break;
+                        case NETWORK_ERROR:
+                            showError.setValue(new Event<>(R.string.network_error));
+                            break;
+                        case SERVER_ERROR:
                             showError.setValue(new Event<>(R.string.invalid_credentials));
-                        break;
-                    case NETWORK_ERROR:
-                        showError.setValue(new Event<>(R.string.network_error));
-                        break;
-                    case SERVER_ERROR:
-                        showError.setValue(new Event<>(R.string.server_error));
-                        break;
+                            break;
+                    }
+                    isLoading.setValue(false);
                 }
-                isLoading.setValue(false);
-            }
-        });
+            });
+        }
     }
 
     public void register(@NotNull String username, @NotNull String password, @NotNull String repeatPassword, @NotNull String fname, @NotNull String lname) {
@@ -82,12 +87,20 @@ public class LoginViewModel extends ViewModel {
             return R.string.first_name_empty_error;
         if(lname.isEmpty())
             return R.string.last_name_empty_error;
-        if(username.length() < 6)
+        if(username.length() < 4)
             return R.string.username_illegal_error;
-        if(password.length() < 6)
+        if(password.length() < 4)
             return R.string.password_illegal_error;
         if(!password.equals(repeatPassword))
             return R.string.passwords_dont_match_error;
+        return null;
+    }
+
+    private @StringRes Integer validateLogin(@NotNull String username, @NotNull String password){
+        if(username.length() < 4)
+            return R.string.username_illegal_error;
+        if(password.length() < 4)
+            return R.string.password_illegal_error;
         return null;
     }
 

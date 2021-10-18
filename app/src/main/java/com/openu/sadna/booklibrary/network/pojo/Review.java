@@ -7,7 +7,7 @@ public class Review {
     @SerializedName("content")
     private final String content;
 
-    @SerializedName("time")
+    @SerializedName("reviewTime")
     private final long time;
 
     @SerializedName("reviewer")

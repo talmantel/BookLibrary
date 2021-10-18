@@ -15,7 +15,7 @@ public interface Repository {
     void register(String username, String password, String fname, String lname, final RequestCallback<Void> callback);
     LiveData<User> getCurrentUser();
     void logout();
-    void addBook(String bookName, String authorName, String authorFamily, String description, String category, RequestCallback<Void> callback);
+    void addBook(int bookISBN, String bookName, String authorName, String authorFamily, String description, String category, RequestCallback<Void> callback);
     void getBooks(String textQuery, String category, final RequestCallback<List<Book>> callback);
     void getBook(int bookID, RequestCallback<Book> callback);
     void orderBook(int bookID, RequestCallback<Void> callback);

@@ -210,8 +210,8 @@ public class MockRepository implements Repository{
     }
 
     @Override
-    public void addBook(String bookName, String authorName, String authorFamily, String description, String category, final RequestCallback<Void> callback) {
-        books.add(new Book(authorName, authorFamily, bookName, category, description, books.size() + 1, true, null));
+    public void addBook(int bookISBN, String bookName, String authorName, String authorFamily, String description, String category, final RequestCallback<Void> callback) {
+        books.add(new Book(authorName, authorFamily, bookName, category, description, bookISBN, true, null));
         if(callback != null) {
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {

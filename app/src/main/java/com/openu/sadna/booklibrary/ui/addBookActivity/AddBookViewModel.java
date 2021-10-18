@@ -57,13 +57,13 @@ public class AddBookViewModel extends ViewModel {
         });
     }
 
-    public void addBook(String bookName, String authorName, String authorFamily, String description, String category){
-        Integer bookDataError = validateAddBook(bookName, authorName, authorFamily, category);
+    public void addBook(int bookISBN, String bookName, String authorName, String authorFamily, String description, String category){
+        Integer bookDataError = validateAddBook(bookISBN, bookName, authorName, authorFamily, category);
         if(bookDataError != null)
             showError.setValue(new Event<>(bookDataError));
         else {
             isLoading.setValue(true);
-            repository.addBook(bookName, authorName, authorFamily, description, category, new RequestCallback<Void>() {
+            repository.addBook(bookISBN, bookName, authorName, authorFamily, description, category, new RequestCallback<Void>() {
                 @Override
                 public void onNetworkResponse(@NotNull NetworkRequestEvent event, Void data) {
                     switch (event) {
@@ -83,7 +83,7 @@ public class AddBookViewModel extends ViewModel {
         }
     }
 
-    private @StringRes Integer validateAddBook(String bookName, String authorName, String authorFamily, String category){
+    private @StringRes Integer validateAddBook(int bookISBN, String bookName, String authorName, String authorFamily, String category){
         if(bookName == null || bookName.isEmpty())
             return R.string.book_name_empty_error;
         if(authorName == null || authorName.isEmpty())
